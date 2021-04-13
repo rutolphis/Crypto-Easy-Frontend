@@ -2,6 +2,7 @@ import { createStackNavigator } from "react-navigation-stack"
 import { createAppContainer } from "react-navigation"
 import Login from "../screens/Login/Login"
 import Market from "../screens/Market/Market"
+import Wallet from "../screens/Wallet"
 
 const screens = {
   Login: {
@@ -12,6 +13,12 @@ const screens = {
   },
   Market: {
     screen: Market,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Wallet: {
+    screen: Wallet,
     navigationOptions: {
       header: null,
     },
