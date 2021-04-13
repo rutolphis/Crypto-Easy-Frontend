@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    marginTop: 100,
+    marginTop: 20,
     marginBottom: 25,
     width: 300,
     height: 100,

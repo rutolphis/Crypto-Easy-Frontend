@@ -8,19 +8,19 @@ const screens = {
   Login: {
     screen: Login,
     navigationOptions: {
-      header: null,
+      headerShown: false,
     },
   },
   Market: {
     screen: Market,
     navigationOptions: {
-      header: null,
+      headerShown: false,
     },
   },
   Wallet: {
     screen: Wallet,
     navigationOptions: {
-      header: null,
+      headerShown: false,
     },
   },
 }
