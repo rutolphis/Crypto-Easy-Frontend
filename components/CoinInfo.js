@@ -1,8 +1,10 @@
+
 import React, { useState , useEffect} from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 
 
 const Coin = () => {
+
 
     const cryptoTemplate = {
         data:{ 
@@ -16,14 +18,15 @@ const Coin = () => {
             }
         },
         ETH: {
+
         name: undefined,
-            symbol: undefined,
-            quote: {
-                EUR: {
-                    price: undefined
-                }
-            }
+        symbol: undefined,
+        quote: {
+          EUR: {
+            price: undefined,
+          },
         },
+
         LTC: {
             name: undefined,
                 symbol: undefined,
@@ -57,32 +60,36 @@ const Coin = () => {
     
     const [response,setResponse] = useState(cryptoTemplate)
 
-    useEffect(()=>{
-    
+
+  useEffect(() => {
     const getCoin = () => {
+
         fetch("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH,LTC,ADA,DOT&convert=EUR", {
             method: "GET",
             headers: {
             Accept: "application/json",
-            'X-CMC_PRO_API_KEY' : '89491b09-0f1e-4585-80cf-a13097fdc682'
-            }
-        }).then(res => { 
-            let resultToPass = res.json();
-            return resultToPass;
+            "X-CMC_PRO_API_KEY": "89491b09-0f1e-4585-80cf-a13097fdc682",
+          },
+        }
+      )
+        .then((res) => {
+          let resultToPass = res.json()
+          return resultToPass
         })
-        .then(data => {
-          setResponse(data);
+        .then((data) => {
+          setResponse(data)
         })
-        .catch( error => {
-        console.error(error)
-        })   
+        .catch((error) => {
+          console.error(error)
+        })
     }
 
     getCoin()
-    }, [])
+  }, [])
 
-    return (
+  return (
     <View style={styles.mainContainer}>
+
         <TouchableOpacity>
         <View style={styles.container}>
             <Image style={styles.btcLogo} source={require("../images/btc-logo.png")}/>
@@ -134,13 +141,13 @@ const Coin = () => {
         </View>
         </TouchableOpacity>
     </View>
-    )
-    } 
+  )
+}
 
-
-export default Coin;
+export default Coin
 
 const styles = StyleSheet.create({
+
     mainContainer: {
         flex: 1,
         

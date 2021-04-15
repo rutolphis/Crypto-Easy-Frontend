@@ -16,28 +16,29 @@ const styles = StyleSheet.create({
   },
 
   bottomBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 35,
-    flex:1,
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: "row",
+  },
 
+  spaceBetweenLeft: {
+    marginLeft: 60,
+  },
+  spaceBetweenRight: {
+    marginRight: 60,
   },
 
   bottomImgLeft: {
-    flex:1,
-    marginLeft: 10,
     height: 40,
     width: 40,
-    resizeMode: 'contain'
-
+    resizeMode: "contain",
   },
 
   bottomImgRight: {
-    flex: 1,
-    marginRight: 10,
     height: 40,
     width: 40,
-    resizeMode: 'contain'
+    resizeMode: "contain",
   },
 
   title: {
