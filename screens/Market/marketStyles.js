@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "center"
   },
 
   bottomBar: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 26,
     color: "#35424a",
-    marginBottom: 6,
+    marginBottom: 40,
   },
 })
 export { styles }
