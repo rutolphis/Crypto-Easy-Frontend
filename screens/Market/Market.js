@@ -17,7 +17,7 @@ export default function Market({ navigation }) {
     <View style={styles.containerMain}>
       <View style={styles.container}>
         <Text style={styles.title}>Market</Text>
-        <Coin/>
+        <Coin style={{alignItems: 'stretch'}}/>
         <NavigationBar/>
       </View>
     </View>

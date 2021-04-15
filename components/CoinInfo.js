@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from "react"
-import { View, Text, Image } from "react-native"
+import { View, Text, Image, StyleSheet } from "react-native"
 
 
 const Coin = () => {
@@ -10,7 +10,7 @@ const Coin = () => {
             symbol: undefined,
             quote: {
                 EUR: {
-                    price: 1
+                    price: undefined
                 }
             }
         },
@@ -19,7 +19,7 @@ const Coin = () => {
             symbol: undefined,
             quote: {
                 EUR: {
-                    price: 1
+                    price: undefined
                 }
             }
         },
@@ -28,7 +28,7 @@ const Coin = () => {
                 symbol: undefined,
                 quote: {
                     EUR: {
-                        price: 1
+                        price: undefined
                     }
                 }
             },
@@ -55,7 +55,7 @@ const Coin = () => {
                             symbol: undefined,
                             quote: {
                                 EUR: {
-                                    price: 1
+                                    price: undefined
                                 }
                             }
                         }, 
@@ -64,7 +64,7 @@ const Coin = () => {
                                 symbol: undefined,
                                 quote: {
                                     EUR: {
-                                        price: 1
+                                        price: undefined
                                     }
                                 }
                             }
@@ -87,7 +87,6 @@ const Coin = () => {
             return resultToPass;
         })
         .then(data => {
-            console.log(data)
           setResponse(data);
         })
         .catch( error => {
@@ -99,30 +98,45 @@ const Coin = () => {
     }, [])
 
     return (
-    <View>
-        <View>
-            <Image/>
-            <Text>{response.data[0] ? response.data[0].name : '...' }</Text>
-            <Text>{response.data[0].quote.EUR.price}</Text>
+    <View style={styles.mainContainer}>
+        <View style={styles.container}>
+            <Image style={styles.btcLogo} source={require("../images/btc-logo.png")}/>
+            <View style={styles.textContainer}>
+                <Text>{response.data[0].name}</Text>
+                <Text>{response.data[0].symbol}</Text>
+            </View>
+            <Text style={styles.price}>{response.data[0].quote.EUR.price}</Text>
         </View>
-        <View>
+        <View style={styles.container}>
             <Image/>
-            <Text>{response.data[1].name }</Text>
+            <View style={styles.textContainer}>
+                <Text>{response.data[1].name}</Text>
+                <Text>{response.data[1].symbol}</Text>
+            </View>
             <Text>{response.data[1].quote.EUR.price}</Text>
         </View>
-        <View>
+        <View style={styles.container}>
             <Image/>
-            <Text>{response.data[3].name }</Text>
+            <View style={styles.textContainer}>
+                <Text>{response.data[3].name}</Text>
+                <Text>{response.data[3].symbol}</Text>
+            </View>
             <Text>{response.data[3].quote.EUR.price}</Text>
         </View>
-        <View>
+        <View style={styles.container}>
             <Image/>
-            <Text>{response.data[4].name}</Text>
+            <View style={styles.textContainer}>
+                <Text>{response.data[4].name}</Text>
+                <Text>{response.data[4].symbol}</Text>
+            </View>
             <Text>{response.data[4].quote.EUR.price}</Text>
         </View>
-        <View>
+        <View style={styles.container}>
             <Image/>
-            <Text>{response.data[6].name}</Text>
+            <View style={styles.textContainer}>
+                <Text>{response.data[6].name}</Text>
+                <Text>{response.data[6].symbol}</Text>
+            </View>
             <Text>{response.data[6].quote.EUR.price}</Text>
         </View>
     </View>
@@ -131,3 +145,31 @@ const Coin = () => {
 
 
 export default Coin;
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex:1,
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+
+    btcLogo: {
+        flex:1,
+        height: 40,
+        width: 40,
+        resizeMode: 'contain',
+        
+    },
+    textContainer:{
+        flex:1,
+        
+    },
+
+    price: {
+        flex: 1,
+
+    }
+  
+  })
