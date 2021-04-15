@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { View, Image, Text } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { styles } from "./loginStyles"
-import { token } from "../../token/Token"
 
 export default function Login({ navigation, token }) {
   const [email, setEmail] = useState("")
@@ -11,7 +10,7 @@ export default function Login({ navigation, token }) {
   const [css, setCss] = useState("none")
 
   const handleSignIn = () => {
-    fetch("http://192.168.1.111:8000/login", {
+    fetch("http://192.168.191.118:8000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",

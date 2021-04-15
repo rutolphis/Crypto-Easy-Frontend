@@ -2,7 +2,7 @@ import { createStackNavigator } from "react-navigation-stack"
 import { createAppContainer } from "react-navigation"
 import Login from "../screens/Login/Login"
 import Market from "../screens/Market/Market"
-import Wallet from "../screens/Wallet"
+import Wallet from "../screens/Wallet/Wallet"
 
 const screens = {
   Login: {
