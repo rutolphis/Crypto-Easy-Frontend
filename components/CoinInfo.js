@@ -24,8 +24,9 @@ const Coin = () => {
         quote: {
           EUR: {
             price: undefined,
-          },
-        },
+          }
+        }
+    },
 
         LTC: {
             name: undefined,
@@ -57,8 +58,9 @@ const Coin = () => {
         
     }
 }
-    
-    const [response,setResponse] = useState(cryptoTemplate)
+
+
+const [response,setResponse] = useState(cryptoTemplate)
 
 
   useEffect(() => {
