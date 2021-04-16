@@ -9,7 +9,7 @@ export default function Wallet({ navigation }) {
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
-        <Text>Wallet balance</Text>
+        <Text style={styles.title}>Wallet balance</Text>
         <NavigationBar navigation={navigation} />
       </View>
     </View>

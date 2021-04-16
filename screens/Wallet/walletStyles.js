@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
   },
@@ -21,14 +22,13 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    textAlign: "left",
+    textAlign: "center",
     alignSelf: "stretch",
-    marginLeft: 17,
-    marginTop: 15,
+    marginTop: 90,
     fontWeight: "bold",
     fontSize: 26,
     color: "#35424a",
-    marginBottom: 6,
+    marginBottom: 40,
   },
 })
 export { styles }
