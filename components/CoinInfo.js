@@ -83,7 +83,7 @@ const Coin = () => {
   }, [])
 
   return (
-    <View style={(styles.mainContainer, { marginTop: 20 })}>
+    <View style={(styles.mainContainer, { marginTop: 10 })}>
       <TouchableOpacity>
         <View style={styles.container}>
           <Image
@@ -91,10 +91,10 @@ const Coin = () => {
             source={require("../images/btc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={{ color: "#0c6cf5", fontWeight: "bold" }}>
+            <Text style={styles.textTitle}>
               {response.data.BTC.name}
             </Text>
-            <Text style={{ color: "#3d8af7", fontWeight: "bold" }}>
+            <Text style={styles.textSymbol}>
               {response.data.BTC.symbol}
             </Text>
           </View>
@@ -110,10 +110,10 @@ const Coin = () => {
             source={require("../images/eth-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={{ color: "#0c6cf5", fontWeight: "bold" }}>
+            <Text style={styles.textTitle}>
               {response.data.ETH.name}
             </Text>
-            <Text style={{ color: "#3d8af7", fontWeight: "bold" }}>
+            <Text style={styles.textSymbol}>
               {response.data.ETH.symbol}
             </Text>
           </View>
@@ -129,10 +129,10 @@ const Coin = () => {
             source={require("../images/ltc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={{ color: "#0c6cf5", fontWeight: "bold" }}>
+            <Text style={styles.textTitle}>
               {response.data.LTC.name}
             </Text>
-            <Text style={{ color: "#3d8af7", fontWeight: "bold" }}>
+            <Text style={styles.textSymbol}>
               {response.data.LTC.symbol}
             </Text>
           </View>
@@ -148,10 +148,10 @@ const Coin = () => {
             source={require("../images/cardano-logo.webp")}
           />
           <View style={styles.textContainer}>
-            <Text style={{ color: "#0c6cf5", fontWeight: "bold" }}>
+            <Text style={styles.textTitle}>
               {response.data.ADA.name}
             </Text>
-            <Text style={{ color: "#3d8af7", fontWeight: "bold" }}>
+            <Text style={styles.textSymbol}>
               {response.data.ADA.symbol}
             </Text>
           </View>
@@ -167,10 +167,10 @@ const Coin = () => {
             source={require("../images/polka-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={{ color: "#0c6cf5", fontWeight: "bold" }}>
+            <Text style={styles.textTitle}>
               {response.data.DOT.name}
             </Text>
-            <Text style={{ color: "#3d8af7", fontWeight: "bold" }}>
+            <Text style={styles.textSymbol}>
               {response.data.DOT.symbol}
             </Text>
           </View>
@@ -214,5 +214,19 @@ const styles = StyleSheet.create({
     marginLeft: 250,
     fontWeight: "bold",
     position: "absolute",
+    fontSize:16 
   },
+
+  textTitle: {
+    color: "#0c6cf5", 
+    fontWeight: "bold",
+    fontSize:18
+  },
+
+  textSymbol: {
+    color: "#3d8af7", 
+    fontWeight: "bold",
+    fontSize:18
+  }
+
 })

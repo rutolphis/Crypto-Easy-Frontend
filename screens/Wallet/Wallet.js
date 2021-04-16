@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 import { styles } from "./walletStyles"
 import { NavigationBar } from "../../components/Footer"
 import { Form, Item, Label, Input, Button } from "native-base"
-import { token } from "../../token/Token"
+import { getToken } from "../../token/Token"
 
 export default function Wallet({ navigation }) {
   return (

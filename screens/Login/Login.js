@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { View, Image, Text } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { styles } from "./loginStyles"
+import { getToken } from "../../token/Token"
 
-export default function Login({ navigation, token }) {
+export default function Login({ navigation}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loginResult, setLoginResult] = useState("")
@@ -32,8 +33,7 @@ export default function Login({ navigation, token }) {
           setLoginResult("Wrong email! Please try again.")
           setCss("flex")
         } else {
-          token = json.response
-          console.log(token)
+          getToken(json.response)
           navigation.navigate("Market")
         }
       })
