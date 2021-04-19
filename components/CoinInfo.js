@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
+import { getCoin } from "../functions/GetCoin"
+import { getInfo } from "../functions/GetInfo"
 
-const Coin = () => {
+const Coin = ({navigation}) => {
   const cryptoTemplate = {
     api_response: {
       BTC: {
@@ -56,34 +58,12 @@ const Coin = () => {
   const [response, setResponse] = useState(cryptoTemplate)
 
   useEffect(() => {
-    const getCoin = () => {
-      fetch(
-        "http://192.168.1.111:8000/cryptodetail",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
-        .then((res) => {
-          let resultToPass = res.json()
-          return resultToPass
-        })
-        .then((data) => {
-          setResponse(data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
-
-    getCoin()
+    getCoin().then((json) => {setResponse(json)}) 
   }, [])
 
   return (
     <View style={(styles.mainContainer, { marginTop: 10 })}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail")}>
         <View style={styles.container}>
           <Image
             style={styles.btcLogo}

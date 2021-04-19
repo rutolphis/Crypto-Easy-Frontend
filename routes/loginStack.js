@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation"
 import Login from "../screens/Login/Login"
 import Market from "../screens/Market/Market"
 import Wallet from "../screens/Wallet/Wallet"
+import CryptoDetail from "../screens/CryptoDetail/CryptoDetail"
 
 const screens = {
   Login: {
@@ -23,6 +24,12 @@ const screens = {
       headerShown: false,
     },
   },
+  CryptoDetail: {
+    screen: CryptoDetail,
+    navigationOptions: {
+      headerShown: false,
+    },
+  }
 }
 
 const loginStack = createStackNavigator(screens)
