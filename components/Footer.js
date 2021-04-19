@@ -3,14 +3,6 @@ import { View, Image, TouchableOpacity } from "react-native"
 import { styles } from "../screens/Market/marketStyles"
 
 export function NavigationBar({ navigation }) {
-  const handleWalletClick = () => {
-    console.log("click wall")
-    navigation.navigate("Wallet")
-  }
-  const handleMarketClick = () => {
-    console.log("click mar")
-    navigation.navigate("Market")
-  }
   return (
     <View style={styles.bottomBar}>
       <TouchableOpacity

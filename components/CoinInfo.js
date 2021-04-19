@@ -91,12 +91,8 @@ const Coin = () => {
             source={require("../images/btc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>
-              {response.data.BTC.name}
-            </Text>
-            <Text style={styles.textSymbol}>
-              {response.data.BTC.symbol}
-            </Text>
+            <Text style={styles.textTitle}>{response.data.BTC.name}</Text>
+            <Text style={styles.textSymbol}>{response.data.BTC.symbol}</Text>
           </View>
           <Text style={styles.price}>
             € {Number(parseFloat(response.data.BTC.quote.EUR.price).toFixed(2))}
@@ -110,12 +106,8 @@ const Coin = () => {
             source={require("../images/eth-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>
-              {response.data.ETH.name}
-            </Text>
-            <Text style={styles.textSymbol}>
-              {response.data.ETH.symbol}
-            </Text>
+            <Text style={styles.textTitle}>{response.data.ETH.name}</Text>
+            <Text style={styles.textSymbol}>{response.data.ETH.symbol}</Text>
           </View>
           <Text style={styles.price}>
             € {Number(parseFloat(response.data.ETH.quote.EUR.price).toFixed(2))}
@@ -129,12 +121,8 @@ const Coin = () => {
             source={require("../images/ltc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>
-              {response.data.LTC.name}
-            </Text>
-            <Text style={styles.textSymbol}>
-              {response.data.LTC.symbol}
-            </Text>
+            <Text style={styles.textTitle}>{response.data.LTC.name}</Text>
+            <Text style={styles.textSymbol}>{response.data.LTC.symbol}</Text>
           </View>
           <Text style={styles.price}>
             € {Number(parseFloat(response.data.LTC.quote.EUR.price).toFixed(2))}
@@ -148,12 +136,8 @@ const Coin = () => {
             source={require("../images/cardano-logo.webp")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>
-              {response.data.ADA.name}
-            </Text>
-            <Text style={styles.textSymbol}>
-              {response.data.ADA.symbol}
-            </Text>
+            <Text style={styles.textTitle}>{response.data.ADA.name}</Text>
+            <Text style={styles.textSymbol}>{response.data.ADA.symbol}</Text>
           </View>
           <Text style={styles.price}>
             € {Number(parseFloat(response.data.ADA.quote.EUR.price).toFixed(2))}
@@ -167,12 +151,8 @@ const Coin = () => {
             source={require("../images/polka-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>
-              {response.data.DOT.name}
-            </Text>
-            <Text style={styles.textSymbol}>
-              {response.data.DOT.symbol}
-            </Text>
+            <Text style={styles.textTitle}>{response.data.DOT.name}</Text>
+            <Text style={styles.textSymbol}>{response.data.DOT.symbol}</Text>
           </View>
           <Text style={styles.price}>
             € {Number(parseFloat(response.data.DOT.quote.EUR.price).toFixed(2))}
@@ -212,21 +192,21 @@ const styles = StyleSheet.create({
 
   price: {
     marginLeft: 250,
+    color: "#35424a",
     fontWeight: "bold",
     position: "absolute",
-    fontSize:16 
+    fontSize: 16,
   },
 
   textTitle: {
-    color: "#0c6cf5", 
+    color: "#0c6cf5",
     fontWeight: "bold",
-    fontSize:18
+    fontSize: 18,
   },
 
   textSymbol: {
-    color: "#3d8af7", 
+    color: "#3d8af7",
     fontWeight: "bold",
-    fontSize:18
-  }
-
+    fontSize: 18,
+  },
 })
