@@ -60,10 +60,10 @@ export default function CryptoDetail({ navigation , crypto}) {
     
       const [response, setResponse] = useState(cryptoTemplate)
 
-      const [personalInfo, setPersonalInfo] = useState()
+      const [personalInfo, setPersonalInfo] = useState('')
 
       useEffect(() => {
-        getCoin().then((json) => {setResponse(json)}) 
+        //getCoin().then((json) => {setResponse(json)}) 
         getInfo().then((json) => {setPersonalInfo(json)})
       }, [])
       
