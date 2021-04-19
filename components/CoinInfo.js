@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { getCoin } from "../functions/GetCoin"
 import { getInfo } from "../functions/GetInfo"
+import { formatNumber, numberFormat } from "../functions/numberFormat"
 
 const Coin = ({ navigation }) => {
   const cryptoTemplate = {
@@ -81,8 +82,8 @@ const Coin = ({ navigation }) => {
           </View>
           <Text style={styles.price}>
             €{" "}
-            {Number(
-              parseFloat(response.api_response.BTC.quote.EUR.price).toFixed(2)
+            {formatNumber(
+              Number(parseFloat(response.api_response.BTC.quote.EUR.price))
             )}
           </Text>
         </View>
@@ -103,8 +104,8 @@ const Coin = ({ navigation }) => {
           </View>
           <Text style={styles.price}>
             €{" "}
-            {Number(
-              parseFloat(response.api_response.ETH.quote.EUR.price).toFixed(2)
+            {formatNumber(
+              Number(parseFloat(response.api_response.ETH.quote.EUR.price))
             )}
           </Text>
         </View>
@@ -125,8 +126,8 @@ const Coin = ({ navigation }) => {
           </View>
           <Text style={styles.price}>
             €{" "}
-            {Number(
-              parseFloat(response.api_response.LTC.quote.EUR.price).toFixed(2)
+            {formatNumber(
+              Number(parseFloat(response.api_response.LTC.quote.EUR.price))
             )}
           </Text>
         </View>
@@ -147,8 +148,8 @@ const Coin = ({ navigation }) => {
           </View>
           <Text style={styles.price}>
             €{" "}
-            {Number(
-              parseFloat(response.api_response.ADA.quote.EUR.price).toFixed(2)
+            {formatNumber(
+              Number(parseFloat(response.api_response.ADA.quote.EUR.price))
             )}
           </Text>
         </View>
@@ -169,8 +170,8 @@ const Coin = ({ navigation }) => {
           </View>
           <Text style={styles.price}>
             €{" "}
-            {Number(
-              parseFloat(response.api_response.DOT.quote.EUR.price).toFixed(2)
+            {formatNumber(
+              Number(parseFloat(response.api_response.DOT.quote.EUR.price))
             )}
           </Text>
         </View>
