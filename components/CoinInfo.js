@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
+import { getCoin } from "../functions/GetCoin"
+import { getInfo } from "../functions/GetInfo"
 
-const Coin = () => {
+const Coin = ({ navigation }) => {
   const cryptoTemplate = {
-    data: {
+    api_response: {
       BTC: {
         name: undefined,
         symbol: undefined,
@@ -56,46 +58,32 @@ const Coin = () => {
   const [response, setResponse] = useState(cryptoTemplate)
 
   useEffect(() => {
-    const getCoin = () => {
-      fetch(
-        "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH,LTC,ADA,DOT&convert=EUR",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "X-CMC_PRO_API_KEY": "89491b09-0f1e-4585-80cf-a13097fdc682",
-          },
-        }
-      )
-        .then((res) => {
-          let resultToPass = res.json()
-          return resultToPass
-        })
-        .then((data) => {
-          setResponse(data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
-
-    getCoin()
+    getCoin().then((json) => {
+      setResponse(json)
+    })
   }, [])
 
   return (
     <View style={(styles.mainContainer, { marginTop: 10 })}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail")}>
         <View style={styles.container}>
           <Image
             style={styles.btcLogo}
             source={require("../images/btc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>{response.data.BTC.name}</Text>
-            <Text style={styles.textSymbol}>{response.data.BTC.symbol}</Text>
+            <Text style={styles.textTitle}>
+              {response.api_response.BTC.name}
+            </Text>
+            <Text style={styles.textSymbol}>
+              {response.api_response.BTC.symbol}
+            </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.data.BTC.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.BTC.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -106,11 +94,18 @@ const Coin = () => {
             source={require("../images/eth-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>{response.data.ETH.name}</Text>
-            <Text style={styles.textSymbol}>{response.data.ETH.symbol}</Text>
+            <Text style={styles.textTitle}>
+              {response.api_response.ETH.name}
+            </Text>
+            <Text style={styles.textSymbol}>
+              {response.api_response.ETH.symbol}
+            </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.data.ETH.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.ETH.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -121,11 +116,18 @@ const Coin = () => {
             source={require("../images/ltc-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>{response.data.LTC.name}</Text>
-            <Text style={styles.textSymbol}>{response.data.LTC.symbol}</Text>
+            <Text style={styles.textTitle}>
+              {response.api_response.LTC.name}
+            </Text>
+            <Text style={styles.textSymbol}>
+              {response.api_response.LTC.symbol}
+            </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.data.LTC.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.LTC.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -136,11 +138,18 @@ const Coin = () => {
             source={require("../images/cardano-logo.webp")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>{response.data.ADA.name}</Text>
-            <Text style={styles.textSymbol}>{response.data.ADA.symbol}</Text>
+            <Text style={styles.textTitle}>
+              {response.api_response.ADA.name}
+            </Text>
+            <Text style={styles.textSymbol}>
+              {response.api_response.ADA.symbol}
+            </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.data.ADA.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.ADA.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -151,11 +160,18 @@ const Coin = () => {
             source={require("../images/polka-logo.png")}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>{response.data.DOT.name}</Text>
-            <Text style={styles.textSymbol}>{response.data.DOT.symbol}</Text>
+            <Text style={styles.textTitle}>
+              {response.api_response.DOT.name}
+            </Text>
+            <Text style={styles.textSymbol}>
+              {response.api_response.DOT.symbol}
+            </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.data.DOT.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.DOT.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
