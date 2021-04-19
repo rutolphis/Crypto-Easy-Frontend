@@ -5,27 +5,20 @@ import { NavigationBar } from "../../components/Footer"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { getToken } from "../../token/Token"
 import { PieChart } from "react-native-chart-kit"
+import { getInfo } from "../../functions/GetInfo"
+import { useState } from "react"
 
 export default function Wallet({ navigation }) {
-  const token = getToken()
-  const getInfo = () => {
-    fetch("http://192.168.191.118:8000/info", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: token,
-      }),
-    }).then((response) => response.json())
-  }
-  console.log(getInfo())
+  const [wallet, setWallet] = useState("")
+  getInfo().then((json) => {
+    setWallet(json["Wallet"])
+  })
+
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
         <Text style={styles.title}>Wallet balance</Text>
-        <Text style={styles.price}>€ 300,00</Text>
+        <Text style={styles.price}>€ {wallet.eur_balance}</Text>
         <TouchableOpacity style={styles.plus}>
           <Image
             source={require("../../images/plus.png")}
