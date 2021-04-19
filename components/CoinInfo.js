@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { getCoin } from "../functions/GetCoin"
 import { getInfo } from "../functions/GetInfo"
 
-const Coin = ({navigation}) => {
+const Coin = ({ navigation }) => {
   const cryptoTemplate = {
     api_response: {
       BTC: {
@@ -58,7 +58,9 @@ const Coin = ({navigation}) => {
   const [response, setResponse] = useState(cryptoTemplate)
 
   useEffect(() => {
-    getCoin().then((json) => {setResponse(json)}) 
+    getCoin().then((json) => {
+      setResponse(json)
+    })
   }, [])
 
   return (
@@ -78,7 +80,10 @@ const Coin = ({navigation}) => {
             </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.api_response.BTC.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.BTC.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -97,7 +102,10 @@ const Coin = ({navigation}) => {
             </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.api_response.ETH.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.ETH.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -116,7 +124,10 @@ const Coin = ({navigation}) => {
             </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.api_response.LTC.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.LTC.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -135,7 +146,10 @@ const Coin = ({navigation}) => {
             </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.api_response.ADA.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.ADA.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -154,7 +168,10 @@ const Coin = ({navigation}) => {
             </Text>
           </View>
           <Text style={styles.price}>
-            € {Number(parseFloat(response.api_response.DOT.quote.EUR.price).toFixed(2))}
+            €{" "}
+            {Number(
+              parseFloat(response.api_response.DOT.quote.EUR.price).toFixed(2)
+            )}
           </Text>
         </View>
       </TouchableOpacity>
@@ -191,21 +208,21 @@ const styles = StyleSheet.create({
 
   price: {
     marginLeft: 250,
+    color: "#35424a",
     fontWeight: "bold",
     position: "absolute",
-    fontSize:16 
+    fontSize: 16,
   },
 
   textTitle: {
-    color: "#0c6cf5", 
+    color: "#0c6cf5",
     fontWeight: "bold",
-    fontSize:18
+    fontSize: 18,
   },
 
   textSymbol: {
-    color: "#3d8af7", 
+    color: "#3d8af7",
     fontWeight: "bold",
-    fontSize:18
-  }
-
+    fontSize: 18,
+  },
 })

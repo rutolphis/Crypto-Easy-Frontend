@@ -13,22 +13,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontWeight: "bold",
   },
-  image: {
-    marginTop: 20,
-    marginBottom: 25,
-    width: 300,
-    height: 100,
-    resizeMode: "contain",
-  },
-
   title: {
-    textAlign: "center",
-    alignSelf: "stretch",
+    marginLeft: 17,
+    marginRight: 200,
+    color: "#35424a",
     marginTop: 90,
     fontWeight: "bold",
-    fontSize: 26,
-    color: "#35424a",
-    marginBottom: 40,
+    fontSize: 16,
+  },
+  price: {
+    marginLeft: 17,
+    marginRight: 220,
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  plus: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    marginTop: 115,
+    marginRight: 30,
+  },
+  plusLogo: {
+    height: 30,
+    width: 30,
   },
 })
 export { styles }
