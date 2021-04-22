@@ -52,6 +52,7 @@ export default function Login({ navigation }) {
             <Label style={styles.loginInput}>Email</Label>
             <Input
               placeholder="johndoe@gmail.com"
+              defaultValue="test@test.co"
               onChangeText={(val) => {
                 setEmail(val)
                 setCss("none")
@@ -63,6 +64,7 @@ export default function Login({ navigation }) {
             <Input
               secureTextEntry={true}
               placeholder="••••••••"
+              defaultValue="tes"
               onChangeText={(val) => {
                 setPassword(val)
                 setCss("none")

@@ -11,7 +11,6 @@ export async function getInfo() {
       token: getToken(),
     }),
   })
-
   let json = await response.json()
 
   return json

@@ -12,12 +12,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center"
+    alignItems: "center",
   },
 
   bottomBar: {
+    backgroundColor: "white",
     position: "absolute",
-    bottom: 35,
+    bottom: 30,
     flex: 1,
     flexDirection: "row",
   },

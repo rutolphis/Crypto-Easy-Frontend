@@ -1,5 +1,7 @@
 import React from "react"
+import { View } from "react-native"
 import { PieChart } from "react-native-chart-kit"
+import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
 export const Chart = (wallet) => {
   const chartConfig = {
@@ -12,49 +14,79 @@ export const Chart = (wallet) => {
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
   }
+  let response = getCryptoToEurBalance()
 
   const data = [
     {
       name: "bitcoin",
-      amount: wallet.bitcoin_balance ? wallet.bitcoin_balance : 1,
+      amount:
+        wallet.wallet.bitcoin_balance ||
+        response.api_response.BTC.quote.EUR.price
+          ? wallet.wallet.bitcoin_balance *
+            response.api_response.BTC.quote.EUR.price
+          : 0,
       color: "#003A6B",
     },
     {
       name: "ethereum",
-      amount: wallet.ethereum_balance ? wallet.ethereum_balance : 0,
+      amount:
+        wallet.wallet.ethereum_balance ||
+        response.api_response.ETH.quote.EUR.price
+          ? wallet.wallet.ethereum_balance *
+            response.api_response.ETH.quote.EUR.price
+          : 0,
       color: "#1B5886",
     },
     {
       name: "cardano",
-      amount: wallet.cardano_balance ? wallet.cardano_balance : 0,
+      amount:
+        wallet.wallet.cardano_balance ||
+        response.api_response.ADA.quote.EUR.price
+          ? wallet.wallet.cardano_balance *
+            response.api_response.ADA.quote.EUR.price
+          : 0,
       color: "#3776A1",
     },
     {
       name: "litecoin",
-      amount: wallet.litecoin_balance ? wallet.litecoin_balance : 0,
+      amount:
+        wallet.wallet.litecoin_balance ||
+        response.api_response.LTC.quote.EUR.price
+          ? wallet.wallet.litecoin_balance *
+            response.api_response.LTC.quote.EUR.price
+          : 0,
       color: "#5293BB",
     },
     {
       name: "polkadot",
-      amount: wallet.polkadot_balance ? wallet.polkadot_balance : 0,
+      amount:
+        wallet.wallet.polkadot_balance ||
+        response.api_response.DOT.quote.EUR.price
+          ? wallet.wallet.polkadot_balance *
+            response.api_response.DOT.quote.EUR.price
+          : 0,
       color: "#6EB1D6",
     },
     {
       name: "euro",
-      amount: wallet.eur_balance ? wallet.eur_balance : 0,
+      amount: wallet.wallet.eur_balance ? wallet.wallet.eur_balance : 1,
       color: "#89CFF1",
     },
   ]
+  if (!data[0].amount) {
+    console.log("vraciam NANANASNSA")
+    return <View></View>
+  }
   return (
     <PieChart
       data={data}
-      height={250}
+      height={200}
       accessor={"amount"}
-      width={250}
+      width={200}
       hasLegend={false}
       chartConfig={chartConfig}
       backgroundColor={"transparent"}
-      paddingLeft={"60"}
+      paddingLeft={"55"}
       absolute
     />
   )
