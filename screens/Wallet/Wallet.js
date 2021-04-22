@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Text, Image, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native"
 import { styles } from "./walletStyles"
 import { NavigationBar } from "../../components/Footer"
 import { Chart } from "../../components/Chart"
@@ -26,6 +26,7 @@ export default function Wallet({ navigation }) {
           />
         </TouchableOpacity>
         <Chart wallet={wallet} />
+        <ScrollView></ScrollView>
         <NavigationBar navigation={navigation} />
       </View>
     </View>

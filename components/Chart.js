@@ -17,44 +17,44 @@ export const Chart = (wallet) => {
     {
       name: "bitcoin",
       amount: wallet.bitcoin_balance ? wallet.bitcoin_balance : 1,
-      color: "#00b8ff",
+      color: "#003A6B",
     },
     {
       name: "ethereum",
       amount: wallet.ethereum_balance ? wallet.ethereum_balance : 0,
-      color: "#009bd6",
+      color: "#1B5886",
     },
     {
       name: "cardano",
       amount: wallet.cardano_balance ? wallet.cardano_balance : 0,
-      color: "#00719c",
+      color: "#3776A1",
     },
     {
       name: "litecoin",
       amount: wallet.litecoin_balance ? wallet.litecoin_balance : 0,
-      color: "#00415a",
+      color: "#5293BB",
     },
     {
       name: "polkadot",
       amount: wallet.polkadot_balance ? wallet.polkadot_balance : 0,
-      color: "#001f2b",
+      color: "#6EB1D6",
     },
     {
       name: "euro",
       amount: wallet.eur_balance ? wallet.eur_balance : 0,
-      color: "#00193d",
+      color: "#89CFF1",
     },
   ]
   return (
     <PieChart
       data={data}
-      height={300}
+      height={250}
       accessor={"amount"}
-      width={300}
+      width={250}
       hasLegend={false}
       chartConfig={chartConfig}
       backgroundColor={"transparent"}
-      paddingLeft={"65"}
+      paddingLeft={"60"}
       absolute
     />
   )
