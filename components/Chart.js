@@ -74,7 +74,6 @@ export const Chart = (wallet) => {
     },
   ]
   if (!data[0].amount) {
-    console.log("vraciam NANANASNSA")
     return <View></View>
   }
   return (
