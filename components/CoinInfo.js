@@ -65,7 +65,7 @@ const Coin = ({ navigation }) => {
 
   return (
     <View style={(styles.mainContainer, { marginTop: 10 })}>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail")}>
+      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 1 })}>
         <View style={styles.container}>
           <Image
             style={styles.btcLogo}

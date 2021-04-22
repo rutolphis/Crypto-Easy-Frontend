@@ -4,7 +4,7 @@ import { Form, Item, Label, Input, Button } from "native-base"
 import { styles } from "./loginStyles"
 import { getToken } from "../../token/Token"
 
-export default function Login({ navigation}) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loginResult, setLoginResult] = useState("")
