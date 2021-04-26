@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native"
 import { styles } from "./walletStyles"
 import { NavigationBar } from "../../components/Footer"
-import { Chart } from "../../components/Chart"
+import { ChartPie } from "../../components/Chart"
 import { WalletDetail } from "../../components/WalletDetail"
 import { getInfo } from "../../functions/GetInfo"
 import { getCryptoToEurBalance } from "../../functions/getCryptoToEurBalance"
@@ -59,7 +59,7 @@ export default function Wallet({ navigation }) {
             style={styles.plusLogo}
           />
         </TouchableOpacity>
-        <Chart wallet={wallet} />
+        <ChartPie wallet={wallet} />
         <View style={{ height: 250 }}>
           <ScrollView>
             <WalletDetail
