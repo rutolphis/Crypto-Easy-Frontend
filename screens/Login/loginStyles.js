@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 20,
     fontSize: 17,
+    borderRadius: 7
   },
 
   signUpText: {
