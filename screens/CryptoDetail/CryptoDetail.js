@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { View, Text} from "react-native"
+import { View, Text, Modal, TouchableOpacity } from "react-native"
 import { Button } from "native-base"
 import { getToken } from "../../token/Token"
 import { getInfo } from "../../functions/GetInfo"
 import { getCoin } from "../../functions/GetCoin"
 import { styles } from "../Wallet/walletStyles"
 import { formatNumber } from "../../functions/numberFormat"
-import { ChartLine} from "../../components/Chart"
+import { ChartLine } from "../../components/Chart"
+import { historicalPrice } from "../../functions/historicalPrice"
 
 export default function CryptoDetail({ navigation }) {
     const crypto = navigation.getParam('crypto')
@@ -66,6 +67,10 @@ export default function CryptoDetail({ navigation }) {
 
       const [personalInfo, setPersonalInfo] = useState('')
 
+      const [historicalData, setHistoricalData] = useState([1,2,3,4,5])
+
+      const [state, setState] = useState(false)
+
       useEffect(() => {
         getInfo().then((json) => {
           if(crypto == 1){
@@ -100,16 +105,24 @@ export default function CryptoDetail({ navigation }) {
           else if(crypto == 5){
             setResponse(json.api_response.DOT)
           }
+          
         }) 
       }, [])
-      
+
+      useEffect(() => {
+        if(response != undefined && response.name != undefined && response != [1,2,3,4,5])
+          setHistoricalData(historicalPrice(response))
+      }, [response])
+      console.log(state)
+
+
       return (
         <View style={styles.containerMain}>
         <View style={styles.container}>
           <Text style={styles.title}>{response.name} balance</Text>
-          <Text style={styles.price}>{formatNumber(
+          <Text style={styles.cryptoDetailPrice}>{formatNumber(
               Number(parseFloat(response.quote?.EUR?.price)))}€ </Text>
-          <ChartLine/>
+          <ChartLine data={historicalData}/>
           <View style={styles.containerCryptoDetail}>
             <Text style={styles.cryptoDetailText}>{response.symbol} Wallet</Text>
             <View>
@@ -117,9 +130,51 @@ export default function CryptoDetail({ navigation }) {
             <Text style = {{marginLeft: 130, fontSize: 10}}>{personalInfo}{response.symbol}</Text>
             </View>
           </View>
-          <Button block light style={styles.cryptoDetailButton}>
+          <Button block light style={styles.cryptoDetailButton} onPress={() => {setState(true)}}>
             <Text style={styles.cryptoDetailButton}>Trade</Text>
           </Button>
+          <Modal
+          visible={state}
+          animationType="slide"
+          presentationStyle="overFullScreen"
+          transparent={true}
+          onRequestClose={() => {
+            setState(false)
+          }}>
+            <View style={{
+            flex: 1,
+            backgroundColor:'#000000aa',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
+            <View style={{
+                backgroundColor: "#0c6cf5",
+                width:'100%',
+                height: '25%',
+                borderRadius: 10,
+                marginTop: 530
+                
+           }}>
+                <Text style={{color:'white', fontSize:17, fontWeight: 'bold', marginLeft: 10, marginTop:10}}>Want trade?</Text>
+                <View style={{
+                backgroundColor: "white",
+                width:'100%',
+                height: '80%',
+                marginTop:15,
+                borderRadius: 10}}>
+                  <TouchableOpacity style={{flexDirection: 'row', marginTop:10}}>
+                    <Text style={{color: '#0c6cf5', fontWeight: 'bold', fontSize:25, marginLeft:10, marginRight: 10}}>+</Text>
+                    <Text style={{color: '#35424a', fontWeight: 'bold', fontSize:17,marginTop:6}}>Buy {response.symbol}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{flexDirection: 'row'}}>
+                    <Text style={{color: '#0c6cf5', fontWeight: 'bold', fontSize:30, marginLeft:10, marginRight: 10}}>-</Text>
+                    <Text style={{color: '#35424a', fontWeight: 'bold', fontSize:17, marginTop:8}}>Sell {response.symbol}</Text>
+                  </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+          </Modal>
         </View>
       </View>
       )

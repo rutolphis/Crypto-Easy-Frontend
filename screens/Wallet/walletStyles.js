@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginRight:40,
     marginLeft:40,
-    marginTop:10,
+    marginTop:30,
+    marginBottom:50,
     paddingTop:5,
     paddingBottom:5,
     paddingRight:10,
@@ -68,6 +69,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     borderRadius: 7,
     alignSelf:'center'
+  },
+  cryptoDetailPrice: {
+    marginLeft: 25,
+    alignSelf: 'flex-start',
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 24,
+    marginBottom:30,
   }
 })
 export { styles }
