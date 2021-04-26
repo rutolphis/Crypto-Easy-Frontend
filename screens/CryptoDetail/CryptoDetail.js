@@ -5,9 +5,11 @@ import { getToken } from "../../token/Token"
 import { getInfo } from "../../functions/GetInfo"
 import { getCoin } from "../../functions/GetCoin"
 import { styles } from "../Wallet/walletStyles"
+import { formatNumber } from "../../functions/numberFormat"
 
-export default function CryptoDetail({ route , navigation}) {
-    const {crypto} = route.state.params.crypto
+export default function CryptoDetail({ navigation }) {
+    const crypto = navigation.getParam('crypto')
+
     const cryptoTemplate = {
         api_response: {
           BTC: {
@@ -15,7 +17,7 @@ export default function CryptoDetail({ route , navigation}) {
             symbol: undefined,
             quote: {
               EUR: {
-                price: undefined,
+                price: 1,
               },
             },
           },
@@ -76,26 +78,20 @@ export default function CryptoDetail({ route , navigation}) {
           else if(crypto == 4){
             setResponse(json.api_response.ADA)
           }
-          else{
+          else if(crypto == 5){
             setResponse(json.api_response.DOT)
           }
         }) 
-        getInfo().then((json) => {setPersonalInfo(json)})
+        //getInfo().then((json) => {setPersonalInfo(json)})
+        console.log(response)
       }, [])
       
       return (
         <View style={styles.containerMain}>
         <View style={styles.container}>
           <Text style={styles.title}>{response.name} balance</Text>
-          <Text style={styles.price}>€ </Text>
-          {/* <PieChart
-            height={220}
-            accessor={"population"}
-            backgroundColor={"blue"}
-            paddingLeft={"15"}
-            center={[10, 50]}
-            absolute
-          /> */}
+          <Text style={styles.price}>{formatNumber(
+              Number(parseFloat(response.quote.EUR.price)))}€ </Text>
         </View>
       </View>
       )
