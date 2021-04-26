@@ -92,7 +92,7 @@ export const ChartPie = (wallet) => {
   )
 }
 
-export const ChartLine = (wallet) => {
+export const ChartLine = (dataset) => {
   const chartConfig={
     backgroundColor: 'blue',
     backgroundGradientFrom: 'white',
@@ -105,22 +105,23 @@ export const ChartLine = (wallet) => {
   }
   
   
-
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    
     datasets: [
       {
-        data: [20, 45, 28, 80, 99, 43],
+        data: dataset.data,
         strokeWidth: 3 // optional
       }
     ],
-    legend: ["Price history"] // optional
   };
 
   return (<LineChart
+    withHorizontalLines={false}
+    withVerticalLines={false}
     data={data}
-    width={200}
+    width={300}
     height={220}
     chartConfig={chartConfig}
+    withHorizontalLabels={false}
   />)
 }
