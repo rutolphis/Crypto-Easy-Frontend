@@ -4,6 +4,7 @@ import Login from "../screens/Login/Login"
 import Market from "../screens/Market/Market"
 import Wallet from "../screens/Wallet/Wallet"
 import CryptoDetail from "../screens/CryptoDetail/CryptoDetail"
+import Buy from "../screens/Buy"
 
 const screens = {
   Login: {
@@ -29,7 +30,13 @@ const screens = {
     navigationOptions: {
       headerShown: false,
     },
-  }
+  },
+  Buy: {
+    screen: Buy,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
 }
 
 const loginStack = createStackNavigator(screens)
