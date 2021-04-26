@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { View, Image, Text } from "react-native"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { getToken } from "../../token/Token"
 import { getInfo } from "../../functions/GetInfo"
 import { getCoin } from "../../functions/GetCoin"
+import { styles } from "../Wallet/walletStyles"
+import { formatNumber } from "../../functions/numberFormat"
 
-export default function CryptoDetail({ navigation , crypto}) {
+export default function CryptoDetail({ navigation }) {
+    const crypto = navigation.getParam('crypto')
 
     const cryptoTemplate = {
         api_response: {
@@ -14,7 +17,7 @@ export default function CryptoDetail({ navigation , crypto}) {
             symbol: undefined,
             quote: {
               EUR: {
-                price: undefined,
+                price: 1,
               },
             },
           },
@@ -60,18 +63,36 @@ export default function CryptoDetail({ navigation , crypto}) {
     
       const [response, setResponse] = useState(cryptoTemplate)
 
-      const [personalInfo, setPersonalInfo] = useState()
+      const [personalInfo, setPersonalInfo] = useState('')
 
       useEffect(() => {
-        getCoin().then((json) => {setResponse(json)}) 
-        getInfo().then((json) => {setPersonalInfo(json)})
+        getCoin().then((json) => {
+          if(crypto == 1){
+            setResponse(json.api_response.BTC)}
+          else if(crypto == 2){
+            setResponse(json.api_response.ETH)
+          }
+          else if(crypto == 3){
+            setResponse(json.api_response.LTC)
+          }
+          else if(crypto == 4){
+            setResponse(json.api_response.ADA)
+          }
+          else if(crypto == 5){
+            setResponse(json.api_response.DOT)
+          }
+        }) 
+        //getInfo().then((json) => {setPersonalInfo(json)})
+        console.log(response)
       }, [])
       
-      console.log(personalInfo)
-
       return (
-          <View>
-              <Text>CryptoInfo</Text>
-          </View>
+        <View style={styles.containerMain}>
+        <View style={styles.container}>
+          <Text style={styles.title}>{response.name} balance</Text>
+          <Text style={styles.price}>{formatNumber(
+              Number(parseFloat(response.quote.EUR.price)))}€ </Text>
+        </View>
+      </View>
       )
 }

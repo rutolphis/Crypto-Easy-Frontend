@@ -1,5 +1,5 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 import { PieChart } from "react-native-chart-kit"
 import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
@@ -73,7 +73,8 @@ export const Chart = (wallet) => {
       color: "#89CFF1",
     },
   ]
-  if (!data[0].amount) {
+
+  if (!data[1].amount) {
     return <View></View>
   }
   return (

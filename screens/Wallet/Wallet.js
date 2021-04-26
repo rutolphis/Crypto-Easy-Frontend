@@ -60,7 +60,7 @@ export default function Wallet({ navigation }) {
           />
         </TouchableOpacity>
         <Chart wallet={wallet} />
-        <View style={{ height: 350 }}>
+        <View style={{ height: 250 }}>
           <ScrollView>
             <WalletDetail
               logoSrc={images.crypto.eur}
