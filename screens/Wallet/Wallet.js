@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native"
 import { styles } from "./walletStyles"
 import { NavigationBar } from "../../components/Footer"
-import { Chart } from "../../components/Chart"
+import { ChartPie } from "../../components/Chart"
 import { WalletDetail } from "../../components/WalletDetail"
 import { getInfo } from "../../functions/GetInfo"
 import { getCryptoToEurBalance } from "../../functions/getCryptoToEurBalance"
@@ -59,7 +59,7 @@ export default function Wallet({ navigation }) {
             style={styles.plusLogo}
           />
         </TouchableOpacity>
-        <Chart wallet={wallet} />
+        <ChartPie wallet={wallet} />
         <View style={{ height: 250 }}>
           <ScrollView>
             <WalletDetail
@@ -77,6 +77,8 @@ export default function Wallet({ navigation }) {
               eur_balance={btcEur_balance}
               crypto_sym={"BTC"}
               css={"flex"}
+              crypto={1}
+              navigation={navigation}
             />
             <WalletDetail
               logoSrc={images.crypto.eth}
@@ -85,14 +87,8 @@ export default function Wallet({ navigation }) {
               eur_balance={ethEur_balance}
               crypto_sym={"ETH"}
               css={"flex"}
-            />
-            <WalletDetail
-              logoSrc={images.crypto.ada}
-              name={"Cardano"}
-              crypto_balance={wallet.cardano_balance}
-              eur_balance={adaEur_balance}
-              crypto_sym={"ADA"}
-              css={"flex"}
+              crypto={2}
+              navigation={navigation}
             />
             <WalletDetail
               logoSrc={images.crypto.ltc}
@@ -101,6 +97,18 @@ export default function Wallet({ navigation }) {
               eur_balance={ltcEur_balance}
               crypto_sym={"LTC"}
               css={"flex"}
+              crypto={3}
+              navigation={navigation}
+            />
+            <WalletDetail
+              logoSrc={images.crypto.ada}
+              name={"Cardano"}
+              crypto_balance={wallet.cardano_balance}
+              eur_balance={adaEur_balance}
+              crypto_sym={"ADA"}
+              css={"flex"}
+              crypto={4}
+              navigation={navigation}
             />
             <WalletDetail
               logoSrc={images.crypto.polka}
@@ -109,6 +117,8 @@ export default function Wallet({ navigation }) {
               eur_balance={dotEur_balance}
               crypto_sym={"DOT"}
               css={"flex"}
+              crypto={5}
+              navigation={navigation}
             />
           </ScrollView>
         </View>

@@ -1,9 +1,9 @@
 import React from "react"
 import { View, Text } from "react-native"
-import { PieChart } from "react-native-chart-kit"
+import { PieChart , LineChart} from "react-native-chart-kit"
 import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
-export const Chart = (wallet) => {
+export const ChartPie = (wallet) => {
   const chartConfig = {
     backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
@@ -90,4 +90,38 @@ export const Chart = (wallet) => {
       absolute
     />
   )
+}
+
+export const ChartLine = (dataset) => {
+  const chartConfig={
+    backgroundColor: 'blue',
+    backgroundGradientFrom: 'white',
+    backgroundGradientTo: 'white',
+    decimalPlaces: 2,
+    color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
+    style: {
+      borderRadius: 16,
+    }
+  }
+  
+  
+  const data = {
+    
+    datasets: [
+      {
+        data: dataset.data,
+        strokeWidth: 3 // optional
+      }
+    ],
+  };
+
+  return (<LineChart
+    withHorizontalLines={false}
+    withVerticalLines={false}
+    data={data}
+    width={300}
+    height={220}
+    chartConfig={chartConfig}
+    withHorizontalLabels={false}
+  />)
 }
