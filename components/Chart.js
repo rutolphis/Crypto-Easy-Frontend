@@ -118,7 +118,7 @@ export const ChartLine = (dataset) => {
       withHorizontalLines={false}
       withVerticalLines={false}
       data={data}
-      width={300}
+      width={400}
       height={220}
       chartConfig={chartConfig}
       withHorizontalLabels={false}

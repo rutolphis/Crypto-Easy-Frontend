@@ -11,6 +11,9 @@ import { historicalPrice } from "../../functions/historicalPrice"
 
 export default function CryptoDetail({ navigation }) {
   const crypto = navigation.getParam("crypto")
+  const availableSell = navigation.getParam("availableSell")
+  const availableBuy = navigation.getParam("availableBuy")
+  console.log("availableBuy", availableBuy)
 
   const cryptoTemplate = {
     api_response: {
@@ -113,7 +116,7 @@ export default function CryptoDetail({ navigation }) {
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
-        <Text style={styles.title}>{response.name} balance</Text>
+        <Text style={styles.title}>{response.name} price</Text>
         <Text style={styles.cryptoDetailPrice}>
           {formatNumber(Number(parseFloat(response.quote?.EUR?.price)))}€{" "}
         </Text>
@@ -121,7 +124,7 @@ export default function CryptoDetail({ navigation }) {
         <View style={styles.containerCryptoDetail}>
           <Text style={styles.cryptoDetailText}>{response.symbol} Wallet</Text>
           <View>
-            <Text style={{ marginLeft: 130, fontSize: 12 }}>
+            <Text style={{ marginLeft: 130, fontSize: 13, fontWeight: "bold" }}>
               €
               {formatNumber(
                 parseFloat(
@@ -129,7 +132,14 @@ export default function CryptoDetail({ navigation }) {
                 )
               )}
             </Text>
-            <Text style={{ marginLeft: 130, fontSize: 10 }}>
+            <Text
+              style={{
+                marginLeft: 130,
+                fontSize: 12,
+                fontWeight: "bold",
+                color: "#c0c0c0",
+              }}
+            >
               {personalInfo}
               {response.symbol}
             </Text>
@@ -167,7 +177,7 @@ export default function CryptoDetail({ navigation }) {
               style={{
                 backgroundColor: "#0c6cf5",
                 width: "100%",
-                height: "25%",
+                height: "30%",
                 borderRadius: 10,
                 marginTop: 530,
               }}
@@ -177,8 +187,8 @@ export default function CryptoDetail({ navigation }) {
                   color: "white",
                   fontSize: 17,
                   fontWeight: "bold",
-                  marginLeft: 10,
-                  marginTop: 10,
+                  marginLeft: 20,
+                  marginTop: 20,
                 }}
               >
                 Want trade?
@@ -187,21 +197,26 @@ export default function CryptoDetail({ navigation }) {
                 style={{
                   backgroundColor: "white",
                   width: "100%",
-                  height: "80%",
-                  marginTop: 15,
+                  height: "70%",
+                  marginTop: 25,
                   borderRadius: 10,
                 }}
               >
                 <TouchableOpacity
-                  style={{ flexDirection: "row", marginTop: 10 }}
-                  onPress={() => navigation.navigate("Buy", { crypto: crypto })}
+                  style={{ flexDirection: "row", marginTop: 30 }}
+                  onPress={() =>
+                    navigation.navigate("Buy", {
+                      crypto: crypto,
+                      availableBuy: availableBuy,
+                    })
+                  }
                 >
                   <Text
                     style={{
                       color: "#0c6cf5",
                       fontWeight: "bold",
                       fontSize: 25,
-                      marginLeft: 10,
+                      marginLeft: 20,
                       marginRight: 10,
                     }}
                   >
@@ -218,13 +233,22 @@ export default function CryptoDetail({ navigation }) {
                     Buy {response.symbol}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={{ flexDirection: "row", marginTop: 15 }}
+                  onPress={() =>
+                    navigation.navigate("Sell", {
+                      crypto: crypto,
+                      availableSell: availableSell,
+                      cryptoBalance: personalInfo,
+                    })
+                  }
+                >
                   <Text
                     style={{
                       color: "#0c6cf5",
                       fontWeight: "bold",
                       fontSize: 30,
-                      marginLeft: 10,
+                      marginLeft: 20,
                       marginRight: 10,
                     }}
                   >

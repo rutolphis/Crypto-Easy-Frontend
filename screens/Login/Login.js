@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Image, Text } from "react-native"
+import { View, Image, Text, TouchableOpacity } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { styles } from "./loginStyles"
 import { getToken } from "../../token/Token"
@@ -81,7 +81,9 @@ export default function Login({ navigation }) {
           {loginResult}
         </Text>
         <Text style={styles.signUpText}>Don't have an account yet ?</Text>
-        <Text style={styles.signUp}>Sign Up</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.signUp}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
