@@ -2,10 +2,8 @@ import React from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { formatNumber } from "../functions/numberFormat"
 
-export const WalletDetail = ( info ) => {
-  
-  
-  let coin = info.crypto ?  info.crypto : 1
+export const WalletDetail = (info) => {
+  let coin = info.crypto ? info.crypto : 1
   let logoSrc = info.logoSrc ? info.logoSrc : "21"
   let name = info.name ? info.name : "name"
   let eur_balance = info.eur_balance ? info.eur_balance : 0
@@ -14,7 +12,11 @@ export const WalletDetail = ( info ) => {
 
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity onPress={() => info?.navigation.navigate("CryptoDetail", {crypto : coin})}>
+      <TouchableOpacity
+        onPress={() =>
+          info?.navigation?.navigate("CryptoDetail", { crypto: coin })
+        }
+      >
         <View style={styles.container}>
           <Image source={logoSrc} style={styles.logo} />
           <View style={styles.textContainer}>

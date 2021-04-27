@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
           setCss("flex")
         } else {
           getToken(json.response)
-          navigation.navigate("Buy")
+          navigation.navigate("Market")
         }
       })
   }

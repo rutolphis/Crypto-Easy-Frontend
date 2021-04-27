@@ -14,7 +14,9 @@ const Coin = ({ navigation }) => {
 
   return (
     <View style={(styles.mainContainer, { marginTop: 10 })}>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 1})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CryptoDetail", { crypto: 1 })}
+      >
         <View style={styles.container}>
           <Image
             style={styles.btcLogo}
@@ -36,7 +38,9 @@ const Coin = ({ navigation }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 2})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CryptoDetail", { crypto: 2 })}
+      >
         <View style={styles.container}>
           <Image
             style={styles.etcLogo}
@@ -58,7 +62,9 @@ const Coin = ({ navigation }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 3})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CryptoDetail", { crypto: 3 })}
+      >
         <View style={styles.container}>
           <Image
             style={styles.etcLogo}
@@ -80,7 +86,9 @@ const Coin = ({ navigation }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 4})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CryptoDetail", { crypto: 4 })}
+      >
         <View style={styles.container}>
           <Image
             style={styles.etcLogo}
@@ -102,7 +110,9 @@ const Coin = ({ navigation }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("CryptoDetail", { crypto: 5})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CryptoDetail", { crypto: 5 })}
+      >
         <View style={styles.container}>
           <Image
             style={styles.etcLogo}

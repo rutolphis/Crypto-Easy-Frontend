@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Text } from "react-native"
-import { PieChart , LineChart} from "react-native-chart-kit"
+import { PieChart, LineChart } from "react-native-chart-kit"
 import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
 export const ChartPie = (wallet) => {
@@ -93,35 +93,35 @@ export const ChartPie = (wallet) => {
 }
 
 export const ChartLine = (dataset) => {
-  const chartConfig={
-    backgroundColor: 'blue',
-    backgroundGradientFrom: 'white',
-    backgroundGradientTo: 'white',
+  const chartConfig = {
+    backgroundColor: "blue",
+    backgroundGradientFrom: "white",
+    backgroundGradientTo: "white",
     decimalPlaces: 2,
     color: (opacity = 1) => `rgba(30, 144, 255, ${opacity})`,
     style: {
       borderRadius: 16,
-    }
+    },
   }
-  
-  
+
   const data = {
-    
     datasets: [
       {
         data: dataset.data,
-        strokeWidth: 3 // optional
-      }
+        strokeWidth: 3, // optional
+      },
     ],
-  };
+  }
 
-  return (<LineChart
-    withHorizontalLines={false}
-    withVerticalLines={false}
-    data={data}
-    width={300}
-    height={220}
-    chartConfig={chartConfig}
-    withHorizontalLabels={false}
-  />)
+  return (
+    <LineChart
+      withHorizontalLines={false}
+      withVerticalLines={false}
+      data={data}
+      width={300}
+      height={220}
+      chartConfig={chartConfig}
+      withHorizontalLabels={false}
+    />
+  )
 }

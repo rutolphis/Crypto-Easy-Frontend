@@ -40,24 +40,24 @@ const styles = StyleSheet.create({
     width: 30,
   },
   containerCryptoDetail: {
-    flexDirection: 'row',
-    marginRight:40,
-    marginLeft:40,
-    marginTop:30,
-    marginBottom:50,
-    paddingTop:5,
-    paddingBottom:5,
-    paddingRight:10,
-    borderRadius:7,
-    paddingLeft:10,
+    flexDirection: "row",
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 30,
+    marginBottom: 50,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 10,
+    borderRadius: 7,
+    paddingLeft: 10,
     borderWidth: 2,
-    borderColor: '#d6d6d6'
+    borderColor: "#d6d6d6",
   },
   cryptoDetailText: {
     color: "#35424a",
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    fontSize: 17
+    fontWeight: "bold",
+    alignSelf: "center",
+    fontSize: 17,
   },
   cryptoDetailButton: {
     backgroundColor: "#0c6cf5",
@@ -68,15 +68,15 @@ const styles = StyleSheet.create({
     margin: 20,
     fontSize: 17,
     borderRadius: 7,
-    alignSelf:'center'
+    alignSelf: "center",
   },
   cryptoDetailPrice: {
     marginLeft: 25,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     color: "#000000",
     fontWeight: "bold",
     fontSize: 24,
-    marginBottom:30,
-  }
+    marginBottom: 30,
+  },
 })
 export { styles }
