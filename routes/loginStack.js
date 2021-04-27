@@ -5,6 +5,7 @@ import Market from "../screens/Market/Market"
 import Wallet from "../screens/Wallet/Wallet"
 import CryptoDetail from "../screens/CryptoDetail/CryptoDetail"
 import Buy from "../screens/Buy"
+import Register from "../screens/Register/Register"
 
 const screens = {
   Login: {
@@ -33,6 +34,12 @@ const screens = {
   },
   Buy: {
     screen: Buy,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  Register: {
+    screen: Register,
     navigationOptions: {
       headerShown: false,
     },

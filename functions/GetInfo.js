@@ -1,7 +1,7 @@
 import { getToken } from "../token/Token"
 
 export async function getInfo() {
-  let response = await fetch("http://192.168.191.118:8000/info", {
+  let response = await fetch("http://192.168.1.111:8000/info", {
     method: "POST",
     headers: {
       Accept: "application/json",

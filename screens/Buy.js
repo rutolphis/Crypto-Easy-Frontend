@@ -14,8 +14,7 @@ import { formatNumber } from "../functions/numberFormat"
 
 export default function Buy({ navigation }) {
   const handleBuy = () => {
-    console.log("som tu")
-    fetch("http://192.168.191.118:8000/buy", {
+    fetch("http://192.168.1.111:8000/buy", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -35,7 +34,7 @@ export default function Buy({ navigation }) {
           setCss("flex")
           setColor("red")
           console.log("NEMAZ PANAZE")
-        } else if (json.response == "Cryptocurrency sucesfully added") {
+        } else if (json.response == "Cryptocurrency added") {
           console.log("PARADA")
           setBuyResult("Cryptocurrency added!")
           setCss("flex")

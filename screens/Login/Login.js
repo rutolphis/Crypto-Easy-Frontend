@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Image, Text } from "react-native"
+import { View, Image, Text, TouchableOpacity } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import { styles } from "./loginStyles"
 import { getToken } from "../../token/Token"
@@ -11,7 +11,7 @@ export default function Login({ navigation }) {
   const [css, setCss] = useState("none")
 
   const handleSignIn = () => {
-    fetch("http://192.168.191.118:8000/login", {
+    fetch("http://192.168.1.111:8000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -81,7 +81,9 @@ export default function Login({ navigation }) {
           {loginResult}
         </Text>
         <Text style={styles.signUpText}>Don't have an account yet ?</Text>
-        <Text style={styles.signUp}>Sign Up</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.signUp}>Sign Ups</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
