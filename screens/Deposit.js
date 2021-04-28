@@ -14,7 +14,7 @@ import { formatNumber } from "../functions/numberFormat"
 
 export default function Buy({ navigation }) {
   const handleDeposit = () => {
-    fetch("http://192.168.191.118:8000/deposit", {
+    fetch("http://192.168.1.111:8000/deposit", {
       method: "PUT",
       headers: {
         Accept: "application/json",

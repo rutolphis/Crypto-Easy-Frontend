@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
+import * as ImagePicker from 'expo-image-picker';
 import { getToken } from "../token/Token"
 
 export default function Register({ navigation }) {
@@ -23,12 +24,33 @@ export default function Register({ navigation }) {
   const [photo, setPhoto] = useState("")
   const [debetCard, setDebetCard] = useState("")
 
-  const [loginResult, setLoginResult] = useState("")
+  const [registerResult, setRegisterStatus] = useState("")
   const [css, setCss] = useState("none")
   const [isSelected, setSelection] = useState(false)
 
-  const handleSignIn = () => {
-    fetch("http://192.168.191.118:8000/register", {
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [3, 3],
+      quality: 1,
+      base64: true
+    }); 
+      setPhoto(result.base64)
+      console.log(photo.substring(1, 30))
+
+  }
+
+  const handleSignUp = () => {
+
+    if(email=='' || password =='' || firstname == '' || lastname=='' || cardId == '' || city == '' || street == '' || postalCode == '' || debetCard == ''){
+      setRegisterStatus("You have to fill every field.")
+      setCss("flex")
+      return
+    }
+
+    console.log(email,password,firstname,lastname,cardId,city,street,postalCode,debetCard)
+    fetch("http://192.168.1.111:8000/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -37,21 +59,30 @@ export default function Register({ navigation }) {
       body: JSON.stringify({
         email: email,
         password: password,
+        firstname: firstname,
+        lastname: lastname,
+        card_id:cardId,
+        city: city,
+        street: street,
+        postal_code: postalCode,
+        debet_card_number: debetCard,
+        photo: photo
       }),
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json.response == "Wrong password") {
-          console.log("zle heslo")
-          setLoginResult("Wrong password! Please try again.")
+        if (json.response == "email is already used") {
+          console.log("Email is used")
+          setRegisterStatus("Email is already used.")
           setCss("flex")
-        } else if (json.response == "Wrong email") {
-          console.log("zle email")
-          setLoginResult("Wrong email! Please try again.")
+        } else if (json.response == "card id is already used") {
+          console.log("card id is already used")
+          setRegisterStatus("Card Id is already used.")
           setCss("flex")
         } else {
-          getToken(json.response)
-          navigation.navigate("Market")
+          console.log("Registered Succesfuly")
+          setRegisterStatus("Registered Succesfuly")
+          setCss("flex")
         }
       })
   }
@@ -149,6 +180,11 @@ export default function Register({ navigation }) {
                 }}
               />
             </Item>
+            <Button onPress={() => {pickImage()}}>
+               <Text>
+                 Upload your photo
+               </Text>
+            </Button>
             <View style={styles.checkboxContainer}>
               <CheckBox
                 value={isSelected}
@@ -179,7 +215,7 @@ export default function Register({ navigation }) {
                 .
               </Text>
             </View>
-            <Button block light style={styles.button} onPress={handleSignIn}>
+            <Button block light style={styles.button} onPress={() => handleSignUp()}>
               <Text style={styles.button}>Sign Up</Text>
             </Button>
           </Form>
@@ -191,7 +227,7 @@ export default function Register({ navigation }) {
               fontSize: 16,
             }}
           >
-            {loginResult}
+            {registerResult}
           </Text>
           <Text style={styles.signUpText}>
             Already have an account ?{" "}

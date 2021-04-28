@@ -7,13 +7,17 @@ import { WalletDetail } from "../../components/WalletDetail"
 import { getInfo } from "../../functions/GetInfo"
 import { getCryptoToEurBalance } from "../../functions/getCryptoToEurBalance"
 import { formatNumber } from "../../functions/numberFormat"
+import { useEffect } from "react/cjs/react.development"
 
 export default function Wallet({ navigation }) {
+  const [photo, setPhoto] = useState("")
   const [wallet, setWallet] = useState("")
-  getInfo().then((json) => {
-    setWallet(json["Wallet"])
-  })
-
+  useEffect(() => {
+    getInfo().then((json) => {
+      setWallet(json["Wallet"])
+      setPhoto(json.PersonalInfo.photo)
+    })}, []
+  )
   const images = {
     crypto: {
       eur: require("../../images/eur-logo.png"),
@@ -64,8 +68,8 @@ export default function Wallet({ navigation }) {
           onPress={() => navigation.navigate("Deposit")}
         >
           <Image
-            source={require("../../images/plus.png")}
-            style={styles.plusLogo}
+          style={{width:100,height:100, borderColor: 'black', borderWidth: 2}}
+            source={{uri: `data:image/jpg;base64,${photo}`}}
           />
         </TouchableOpacity>
         <ChartPie wallet={wallet} />

@@ -46,10 +46,6 @@ const screens = {
       headerShown: false,
     },
   },
-<<<<<<< HEAD
-  Register: {
-    screen: Register,
-=======
   Sell: {
     screen: Sell,
     navigationOptions: {
@@ -58,7 +54,6 @@ const screens = {
   },
   Deposit: {
     screen: Deposit,
->>>>>>> 52e8dcba27e0b360d8e3448f608b8c1518dd99ef
     navigationOptions: {
       headerShown: false,
     },
