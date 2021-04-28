@@ -6,15 +6,21 @@ export const WalletDetail = (info) => {
   let coin = info.crypto ? info.crypto : 1
   let logoSrc = info.logoSrc ? info.logoSrc : "21"
   let name = info.name ? info.name : "name"
-  let eur_balance = info.eur_balance ? info.eur_balance : 0
-  let crypto_balance = info.crypto_balance ? info.crypto_balance : 0
-  let crypto_sym = info.crypto_sym ? info.crypto_sym : "SYM"
+  let eurBalance = info.eur_balance ? info.eur_balance : 0
+  let cryptoBalance = info.crypto_balance ? info.crypto_balance : 0
+  let cryptoSym = info.crypto_sym ? info.crypto_sym : "SYM"
+  let availableBuy = info.availableBuy ? info.availableBuy : 0
 
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
         onPress={() =>
-          info?.navigation?.navigate("CryptoDetail", { crypto: coin })
+          info?.navigation?.navigate("CryptoDetail", {
+            crypto: coin,
+            eurBalance: eurBalance,
+            availableBuy: availableBuy,
+            availableSell: cryptoBalance,
+          })
         }
       >
         <View style={styles.container}>
@@ -23,15 +29,15 @@ export const WalletDetail = (info) => {
             <Text style={styles.textTitle}>{name}</Text>
           </View>
           <Text style={styles.price}>
-            € {formatNumber(parseFloat(eur_balance))}
+            € {formatNumber(parseFloat(eurBalance))}
           </Text>
         </View>
         <View style={styles.cryptoContainer}>
           <Text style={(styles.textSymbol, { display: info.css })}>
-            {formatNumber(parseFloat(crypto_balance))}
+            {formatNumber(parseFloat(cryptoBalance))}
           </Text>
           <Text style={(styles.textSymbol, { display: info.css })}>
-            {crypto_sym}
+            {cryptoSym}
           </Text>
         </View>
       </TouchableOpacity>

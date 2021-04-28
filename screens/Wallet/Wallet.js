@@ -46,6 +46,12 @@ export default function Wallet({ navigation }) {
     dotEur_balance +
     eurBalance
 
+  let availableBtc = eurBalance / response.api_response.BTC.quote.EUR.price
+  let availableEth = eurBalance / response.api_response.ETH.quote.EUR.price
+  let availableLtc = eurBalance / response.api_response.LTC.quote.EUR.price
+  let availableAda = eurBalance / response.api_response.ADA.quote.EUR.price
+  let availableDot = eurBalance / response.api_response.DOT.quote.EUR.price
+
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
@@ -53,14 +59,17 @@ export default function Wallet({ navigation }) {
         <Text style={styles.price}>
           € {formatNumber(parseFloat(totalBalance))}
         </Text>
-        <TouchableOpacity style={styles.plus}>
+        <TouchableOpacity
+          style={styles.plus}
+          onPress={() => navigation.navigate("Deposit")}
+        >
           <Image
             source={require("../../images/plus.png")}
             style={styles.plusLogo}
           />
         </TouchableOpacity>
         <ChartPie wallet={wallet} />
-        <View style={{ height: 250 }}>
+        <View style={{ height: 350 }}>
           <ScrollView>
             <WalletDetail
               logoSrc={images.crypto.eur}
@@ -79,6 +88,7 @@ export default function Wallet({ navigation }) {
               css={"flex"}
               crypto={1}
               navigation={navigation}
+              availableBuy={availableBtc}
             />
             <WalletDetail
               logoSrc={images.crypto.eth}
@@ -89,6 +99,7 @@ export default function Wallet({ navigation }) {
               css={"flex"}
               crypto={2}
               navigation={navigation}
+              availableBuy={availableEth}
             />
             <WalletDetail
               logoSrc={images.crypto.ltc}
@@ -99,6 +110,7 @@ export default function Wallet({ navigation }) {
               css={"flex"}
               crypto={3}
               navigation={navigation}
+              availableBuy={availableLtc}
             />
             <WalletDetail
               logoSrc={images.crypto.ada}
@@ -109,6 +121,7 @@ export default function Wallet({ navigation }) {
               css={"flex"}
               crypto={4}
               navigation={navigation}
+              availableBuy={availableAda}
             />
             <WalletDetail
               logoSrc={images.crypto.polka}
@@ -119,6 +132,7 @@ export default function Wallet({ navigation }) {
               css={"flex"}
               crypto={5}
               navigation={navigation}
+              availableBuy={availableDot}
             />
           </ScrollView>
         </View>

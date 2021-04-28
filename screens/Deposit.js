@@ -13,8 +13,8 @@ import { getToken } from "../token/Token"
 import { formatNumber } from "../functions/numberFormat"
 
 export default function Buy({ navigation }) {
-  const handleBuy = () => {
-    fetch("http://192.168.1.111:8000/buy", {
+  const handleDeposit = () => {
+    fetch("http://192.168.191.118:8000/deposit", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -22,25 +22,17 @@ export default function Buy({ navigation }) {
       },
       body: JSON.stringify({
         amount: value,
-        cryptocurrency: cryptoSymbol,
         token: getToken(),
       }),
     })
       .then((response) => response.json())
       .then((json) => {
         setState(true)
-        if (json.response == "Not enough money") {
-          setBuyResult("Not enough money!")
-          setCss("flex")
-          setColor("red")
-          console.log("NEMAZ PANAZE")
-        } else if (json.response == "Cryptocurrency added") {
-          console.log("PARADA")
-          setBuyResult("Cryptocurrency sucesfully added!")
+        if (json.response == "Deposit added") {
+          setBuyResult("Deposit sucesfully added!")
           setCss("flex")
           setColor("#0c6cf5")
         } else if (json.response == "No permission") {
-          console.log("ajajaja")
           setBuyResult("No permission!")
           setCss("flex")
           setColor("red")
@@ -48,44 +40,20 @@ export default function Buy({ navigation }) {
       })
   }
 
-  const crypto = navigation.getParam("crypto")
-  const availableBuy = navigation.getParam("availableBuy")
-
-  const [cryptoSymbol, setCryptoSymbol] = useState("")
-  const [eurBalance, setEurBalance] = useState(0)
   const [value, setValue] = useState(0)
   const [state, setState] = useState(false)
   const [buyResult, setBuyResult] = useState("")
   const [css, setCss] = useState("none")
   const [color, setColor] = useState("red")
 
-  useEffect(() => {
-    getInfo().then((json) => {
-      if (crypto == 1) {
-        setCryptoSymbol("BTC")
-      } else if (crypto == 2) {
-        setCryptoSymbol("ETH")
-      } else if (crypto == 3) {
-        setCryptoSymbol("LTC")
-      } else if (crypto == 4) {
-        setCryptoSymbol("ADA")
-      } else if (crypto == 5) {
-        setCryptoSymbol("DOT")
-      }
-      setEurBalance(json?.Wallet?.eur_balance)
-    })
-  }, [])
   return (
     <View style={styles.containerMain}>
-      <Text style={styles.title}>Buy</Text>
-      <Text style={styles.subTitle}>Purchase {cryptoSymbol} with cash</Text>
-      <Text style={styles.subTitle}>
-        {availableBuy.toFixed(4)} {cryptoSymbol} available to buy
-      </Text>
+      <Text style={styles.title}>Deposit</Text>
+      <Text style={styles.subTitle}>Deposit funds from your bank account</Text>
       <View style={styles.container}>
         <TextInput
           style={styles.textInputStyle}
-          placeholder={cryptoSymbol + " " + 0}
+          placeholder="€0"
           placeholderTextColor="#0c6cf5"
           numeric
           keyboardType={"numeric"}
@@ -93,19 +61,17 @@ export default function Buy({ navigation }) {
         />
       </View>
       <View style={styles.containerCryptoDetail}>
-        <Text style={styles.cryptoDetailText}>Wallet</Text>
+        <Text style={styles.cryptoDetailText}> XXXX XXXX XXXX XXXX</Text>
         <View>
           <Text
             style={{
-              marginLeft: 150,
+              marginLeft: 130,
               margin: 8,
               color: "#35424a",
               fontWeight: "bold",
               fontSize: 17,
             }}
-          >
-            € {formatNumber(eurBalance)}
-          </Text>
+          ></Text>
         </View>
       </View>
       <View>
@@ -113,9 +79,9 @@ export default function Buy({ navigation }) {
           block
           light
           style={styles.cryptoDetailButton}
-          onPress={() => handleBuy()}
+          onPress={() => handleDeposit()}
         >
-          <Text style={styles.cryptoDetailButton}>Buy</Text>
+          <Text style={styles.cryptoDetailButton}>Deposit</Text>
         </Button>
       </View>
       <Modal
@@ -214,13 +180,14 @@ const styles = StyleSheet.create({
     marginBottom: "20%",
     flexDirection: "row",
     width: "75%",
-    height: "6%",
+    padding: 3,
     borderRadius: 7,
     borderWidth: 2,
     borderColor: "#d6d6d6",
+    textAlign: "center",
+    alignSelf: "center",
   },
   cryptoDetailText: {
-    marginLeft: 15,
     color: "#35424a",
     fontWeight: "bold",
     alignSelf: "center",

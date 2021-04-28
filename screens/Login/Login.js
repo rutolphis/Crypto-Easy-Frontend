@@ -82,7 +82,7 @@ export default function Login({ navigation }) {
         </Text>
         <Text style={styles.signUpText}>Don't have an account yet ?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.signUp}>Sign Ups</Text>
+          <Text style={styles.signUp}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>

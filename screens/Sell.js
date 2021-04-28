@@ -12,9 +12,10 @@ import { getInfo } from "../functions/GetInfo"
 import { getToken } from "../token/Token"
 import { formatNumber } from "../functions/numberFormat"
 
-export default function Buy({ navigation }) {
-  const handleBuy = () => {
-    fetch("http://192.168.1.111:8000/buy", {
+export default function Sell({ navigation }) {
+  const handleSell = () => {
+    console.log("som tu")
+    fetch("http://192.168.191.118:8000/sell", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -29,18 +30,15 @@ export default function Buy({ navigation }) {
       .then((response) => response.json())
       .then((json) => {
         setState(true)
-        if (json.response == "Not enough money") {
-          setBuyResult("Not enough money!")
+        if (json.response == "Not enough crypto") {
+          setBuyResult("Not enough crypto to sell...")
           setCss("flex")
           setColor("red")
-          console.log("NEMAZ PANAZE")
-        } else if (json.response == "Cryptocurrency added") {
-          console.log("PARADA")
-          setBuyResult("Cryptocurrency sucesfully added!")
+        } else if (json.response == "Cryptocurrency selled") {
+          setBuyResult("Cryptocurrency sucesfully selled!")
           setCss("flex")
           setColor("#0c6cf5")
         } else if (json.response == "No permission") {
-          console.log("ajajaja")
           setBuyResult("No permission!")
           setCss("flex")
           setColor("red")
@@ -49,9 +47,10 @@ export default function Buy({ navigation }) {
   }
 
   const crypto = navigation.getParam("crypto")
-  const availableBuy = navigation.getParam("availableBuy")
+  const availableSell = navigation.getParam("availableSell")
+  const cryptoBalance = navigation.getParam("cryptoBalance")
 
-  const [cryptoSymbol, setCryptoSymbol] = useState("")
+  const [cryptoSymbol, setCryptoBalance] = useState("")
   const [eurBalance, setEurBalance] = useState(0)
   const [value, setValue] = useState(0)
   const [state, setState] = useState(false)
@@ -62,25 +61,25 @@ export default function Buy({ navigation }) {
   useEffect(() => {
     getInfo().then((json) => {
       if (crypto == 1) {
-        setCryptoSymbol("BTC")
+        setCryptoBalance("BTC")
       } else if (crypto == 2) {
-        setCryptoSymbol("ETH")
+        setCryptoBalance("ETH")
       } else if (crypto == 3) {
-        setCryptoSymbol("LTC")
+        setCryptoBalance("LTC")
       } else if (crypto == 4) {
-        setCryptoSymbol("ADA")
+        setCryptoBalance("ADA")
       } else if (crypto == 5) {
-        setCryptoSymbol("DOT")
+        setCryptoBalance("DOT")
       }
       setEurBalance(json?.Wallet?.eur_balance)
     })
   }, [])
   return (
     <View style={styles.containerMain}>
-      <Text style={styles.title}>Buy</Text>
-      <Text style={styles.subTitle}>Purchase {cryptoSymbol} with cash</Text>
+      <Text style={styles.title}>Sell</Text>
+      <Text style={styles.subTitle}>Get cash for your {cryptoSymbol}</Text>
       <Text style={styles.subTitle}>
-        {availableBuy.toFixed(4)} {cryptoSymbol} available to buy
+        {availableSell} {cryptoSymbol} available to sell
       </Text>
       <View style={styles.container}>
         <TextInput
@@ -97,14 +96,24 @@ export default function Buy({ navigation }) {
         <View>
           <Text
             style={{
-              marginLeft: 150,
-              margin: 8,
-              color: "#35424a",
+              marginTop: 5,
+              marginLeft: 165,
+              fontSize: 13,
               fontWeight: "bold",
-              fontSize: 17,
             }}
           >
             € {formatNumber(eurBalance)}
+          </Text>
+          <Text
+            style={{
+              marginLeft: 165,
+              fontSize: 12,
+              fontWeight: "bold",
+              color: "#c0c0c0",
+            }}
+          >
+            {cryptoBalance}
+            {cryptoSymbol}
           </Text>
         </View>
       </View>
@@ -113,9 +122,9 @@ export default function Buy({ navigation }) {
           block
           light
           style={styles.cryptoDetailButton}
-          onPress={() => handleBuy()}
+          onPress={() => handleSell()}
         >
-          <Text style={styles.cryptoDetailButton}>Buy</Text>
+          <Text style={styles.cryptoDetailButton}>Sell</Text>
         </Button>
       </View>
       <Modal
@@ -145,7 +154,11 @@ export default function Buy({ navigation }) {
               borderRadius: 10,
             }}
           >
-            <TouchableOpacity onPress={() => setState(false)}>
+            <TouchableOpacity
+              onPress={() => {
+                setState(false)
+              }}
+            >
               <Text
                 style={{
                   color: "white",
@@ -196,7 +209,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "#35424a",
     fontWeight: "bold",
-    fontSize: 19,
+    fontSize: 17,
   },
   subTitle: {
     alignSelf: "center",
