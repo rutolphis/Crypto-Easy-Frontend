@@ -37,13 +37,13 @@ export default function Register({ navigation }) {
       base64: true
     }); 
       setPhoto(result.base64)
-      console.log(photo.substring(1, 30))
+      console.log(photo.substring(0, 30))
 
   }
 
   const handleSignUp = () => {
 
-    if(email=='' || password =='' || firstname == '' || lastname=='' || cardId == '' || city == '' || street == '' || postalCode == '' || debetCard == ''){
+    if(email=='' || password =='' || firstname == '' || lastname=='' || cardId == '' || city == '' || street == '' || postalCode == '' || debetCard == '' || isSelected==false){
       setRegisterStatus("You have to fill every field.")
       setCss("flex")
       return
@@ -188,7 +188,7 @@ export default function Register({ navigation }) {
             <View style={styles.checkboxContainer}>
               <CheckBox
                 value={isSelected}
-                onValueChange={setSelection}
+                onValueChange={setSelection(true)}
                 style={styles.checkbox}
               />
               <Text style={{ color: "#989eb1", fontSize: 16 }}>

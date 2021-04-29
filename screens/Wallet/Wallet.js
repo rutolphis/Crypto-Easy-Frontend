@@ -10,12 +10,14 @@ import { formatNumber } from "../../functions/numberFormat"
 import { useEffect } from "react/cjs/react.development"
 
 export default function Wallet({ navigation }) {
-  const [photo, setPhoto] = useState("")
+
+  const [photo, setPhoto] = useState("R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=")
   const [wallet, setWallet] = useState("")
   useEffect(() => {
-    getInfo().then((json) => {
-      setWallet(json["Wallet"])
-      setPhoto(json.PersonalInfo.photo)
+      getInfo().then((json) => {
+        setWallet(json["Wallet"])
+        setPhoto(json.PersonalInfo.photo)
+        console.log(photo.substring(0,30))
     })}, []
   )
   const images = {
@@ -68,7 +70,7 @@ export default function Wallet({ navigation }) {
           onPress={() => navigation.navigate("Deposit")}
         >
           <Image
-          style={{width:100,height:100, borderColor: 'black', borderWidth: 2}}
+            style={{width:50, height:50, borderRadius:400/2}}
             source={{uri: `data:image/jpg;base64,${photo}`}}
           />
         </TouchableOpacity>

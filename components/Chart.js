@@ -69,12 +69,12 @@ export const ChartPie = (wallet) => {
     },
     {
       name: "euro",
-      amount: wallet.wallet.eur_balance ? wallet.wallet.eur_balance : 1,
+      amount: wallet?.wallet?.eur_balance ? wallet.wallet.eur_balance : 1,
       color: "#89CFF1",
     },
   ]
 
-  if (!data[1].amount) {
+  if (!data[0].amount) {
     return <View></View>
   }
   return (
