@@ -10,17 +10,17 @@ import { formatNumber } from "../../functions/numberFormat"
 import { useEffect } from "react/cjs/react.development"
 
 export default function Wallet({ navigation }) {
-  const [photo, setPhoto] = useState(
-    "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
-  )
+  const unsubscribe = navigation.addListener('didFocus', () => {
+    console.log('focussed');
+});
+  const [photo, setPhoto] = useState("R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=")
   const [wallet, setWallet] = useState("")
   useEffect(() => {
-    getInfo().then((json) => {
-      setWallet(json["Wallet"])
-      setPhoto(json.PersonalInfo.photo)
-      console.log(photo.substring(0, 30))
-    })
-  }, [])
+      getInfo().then((json) => {
+        setWallet(json["Wallet"])
+        setPhoto(json.PersonalInfo.photo)
+    })}, [unsubscribe]
+  )
   const images = {
     crypto: {
       eur: require("../../images/eur-logo.png"),
@@ -62,28 +62,21 @@ export default function Wallet({ navigation }) {
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
-        <View style={{ marginBottom: 40 }}>
-          <Text style={styles.title}>Wallet balance</Text>
-          <Text style={styles.price}>
-            € {formatNumber(parseFloat(totalBalance))}
-          </Text>
-          <TouchableOpacity
-            style={styles.plus}
-            onPress={() => navigation.navigate("Deposit")}
-          >
-            <Image
-              style={{
-                width: 50,
-                height: 50,
-                borderRadius: 400 / 2,
-                marginRight: 10,
-              }}
-              source={{ uri: `data:image/jpg;base64,${photo}` }}
-            />
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.title}>Wallet balance</Text>
+        <Text style={styles.price}>
+          € {formatNumber(parseFloat(totalBalance))}
+        </Text>
+        <TouchableOpacity
+          style={styles.plus}
+          onPress={() => navigation.navigate("Deposit")}
+        >
+          <Image
+            style={{width:50, height:50, borderRadius:400/2}}
+            source={{uri: `data:image/jpg;base64,${photo}`}}
+          />
+        </TouchableOpacity>
         <ChartPie wallet={wallet} />
-        <View style={{ height: 300 }}>
+        <View style={{ height: 350 }}>
           <ScrollView>
             <WalletDetail
               logoSrc={images.crypto.eur}
