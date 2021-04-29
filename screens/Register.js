@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Modal
 } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
 import * as ImagePicker from 'expo-image-picker';
@@ -27,6 +28,7 @@ export default function Register({ navigation }) {
   const [registerResult, setRegisterStatus] = useState("")
   const [css, setCss] = useState("none")
   const [isSelected, setSelection] = useState(false)
+  const [state, setState] = useState(false)
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -80,9 +82,7 @@ export default function Register({ navigation }) {
           setRegisterStatus("Card Id is already used.")
           setCss("flex")
         } else {
-          console.log("Registered Succesfuly")
-          setRegisterStatus("Registered Succesfuly")
-          setCss("flex")
+          setState(true)
         }
       })
   }
@@ -136,6 +136,7 @@ export default function Register({ navigation }) {
             <Item stackedLabel last>
               <Label style={styles.regInput}>Card ID</Label>
               <Input
+              keyboardType="numeric"
                 onChangeText={(val) => {
                   setCardId(val)
                   setCss("none")
@@ -180,15 +181,15 @@ export default function Register({ navigation }) {
                 }}
               />
             </Item>
-            <Button onPress={() => {pickImage()}}>
-               <Text>
+            <Button style={styles.buttonUpload} onPress={() => {pickImage()}}>
+               <Text style={styles.buttonUpload}>
                  Upload your photo
                </Text>
             </Button>
             <View style={styles.checkboxContainer}>
               <CheckBox
                 value={isSelected}
-                onValueChange={setSelection(true)}
+                onValueChange={() => setSelection(!isSelected)}
                 style={styles.checkbox}
               />
               <Text style={{ color: "#989eb1", fontSize: 16 }}>
@@ -225,17 +226,72 @@ export default function Register({ navigation }) {
               color: "red",
               marginBottom: 10,
               fontSize: 16,
+              alignSelf: 'center'
             }}
           >
             {registerResult}
           </Text>
           <Text style={styles.signUpText}>
             Already have an account ?{" "}
+            </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <Text style={styles.signUp}>Sign In</Text>
             </TouchableOpacity>
-          </Text>
         </ScrollView>
+        <Modal
+        visible={state}
+        animationType="slide"
+        presentationStyle="overFullScreen"
+        transparent={true}
+        onRequestClose={() => {
+          setState(false)
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "#000000aa",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#0c6cf5",
+              marginTop: "133%",
+              width: "100%",
+              height: "30%",
+              borderRadius: 10,
+            }}
+          >
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  alignSelf: "flex-end",
+                  marginRight: 20,
+                  marginTop: 20,
+                }}
+              >
+                x
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+                fontWeight: "bold",
+                alignSelf: "center",
+                marginTop: "13%",
+              }}
+            >
+              Registered succesfully!
+            </Text>
+          </View>
+        </View>
+      </Modal>
       </View>
     </View>
   )
@@ -297,19 +353,36 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
 
+  buttonUpload: {
+    backgroundColor: "#d6d6d6",
+    color: "white",
+    fontWeight: "bold",
+    width: 250,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom:20,
+    fontSize: 17,
+    borderRadius: 7,
+    alignSelf:'center'
+  },
+
   signUpText: {
-    marginLeft: 40,
+    marginLeft: 75,
     alignItems: "center",
     justifyContent: "center",
     color: "#989eb1",
     fontSize: 16,
-    marginBottom: "20%",
   },
 
   signUp: {
+    marginLeft: 140,
+    alignItems: "center",
+    justifyContent: "center",
     color: "#0c6cf5",
     fontWeight: "bold",
     fontSize: 16,
+    marginBottom: "20%",
+
   },
   checkboxContainer: {
     width: 300,
