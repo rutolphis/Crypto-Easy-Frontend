@@ -1,21 +1,46 @@
 import React, { useState, useEffect } from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { getCoin } from "../functions/GetCoin"
+import { getInfo } from "../functions/GetInfo"
 import { formatNumber } from "../functions/numberFormat"
 import cryptoTemplate from "./CryptoTemplate"
+import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
 const Coin = ({ navigation }) => {
   const [response, setResponse] = useState(cryptoTemplate)
+  const [wallet, setWallet] = useState("")
+
   useEffect(() => {
     getCoin().then((json) => {
       setResponse(json)
     })
   }, [])
 
+  useEffect(() => {
+    getInfo().then((json) => {
+      setWallet(json["Wallet"])
+    })
+  }, [])
+
+  // let responseCr = getCryptoToEurBalance()
+  let eurBalance = wallet.eur_balance
+  console.log(eurBalance, response.api_response.LTC.quote.EUR.price)
+  let availableBtc = eurBalance / response.api_response.BTC.quote.EUR.price
+  let availableEth = eurBalance / response.api_response.ETH.quote.EUR.price
+  let availableLtc = eurBalance / response.api_response.LTC.quote.EUR.price
+  let availableAda = eurBalance / response.api_response.ADA.quote.EUR.price
+  let availableDot = eurBalance / response.api_response.DOT.quote.EUR.price
+
   return (
     <View style={(styles.mainContainer, { marginTop: 10 })}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CryptoDetail", { crypto: 1 })}
+        onPress={() =>
+          navigation.navigate("CryptoDetail", {
+            crypto: 1,
+            availableBuy: availableBtc,
+            availableSell: wallet.bitcoin_balance,
+          })
+        }
       >
         <View style={styles.container}>
           <Image
@@ -39,7 +64,13 @@ const Coin = ({ navigation }) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CryptoDetail", { crypto: 2 })}
+        onPress={() =>
+          navigation.navigate("CryptoDetail", {
+            crypto: 2,
+            availableBuy: availableEth,
+            availableSell: wallet.ethereum_balance,
+          })
+        }
       >
         <View style={styles.container}>
           <Image
@@ -63,7 +94,13 @@ const Coin = ({ navigation }) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CryptoDetail", { crypto: 3 })}
+        onPress={() =>
+          navigation.navigate("CryptoDetail", {
+            crypto: 3,
+            availableBuy: availableLtc,
+            availableSell: wallet.litecoin_balance,
+          })
+        }
       >
         <View style={styles.container}>
           <Image
@@ -87,7 +124,13 @@ const Coin = ({ navigation }) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CryptoDetail", { crypto: 4 })}
+        onPress={() =>
+          navigation.navigate("CryptoDetail", {
+            crypto: 4,
+            availableBuy: availableAda,
+            availableSell: wallet.cardano_balance,
+          })
+        }
       >
         <View style={styles.container}>
           <Image
@@ -111,7 +154,13 @@ const Coin = ({ navigation }) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CryptoDetail", { crypto: 5 })}
+        onPress={() =>
+          navigation.navigate("CryptoDetail", {
+            crypto: 5,
+            availableBuy: availableDot,
+            availableSell: wallet.polkadot_balance,
+          })
+        }
       >
         <View style={styles.container}>
           <Image

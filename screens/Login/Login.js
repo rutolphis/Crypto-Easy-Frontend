@@ -11,7 +11,7 @@ export default function Login({ navigation }) {
   const [css, setCss] = useState("none")
 
   const handleSignIn = () => {
-    fetch("http://192.168.1.111:8000/login", {
+    fetch("http://192.168.191.118:8000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -52,7 +52,6 @@ export default function Login({ navigation }) {
             <Label style={styles.loginInput}>Email</Label>
             <Input
               placeholder="johndoe@gmail.com"
-              defaultValue="test@test.co"
               onChangeText={(val) => {
                 setEmail(val)
                 setCss("none")
@@ -64,7 +63,6 @@ export default function Login({ navigation }) {
             <Input
               secureTextEntry={true}
               placeholder="••••••••"
-              defaultValue="tes"
               onChangeText={(val) => {
                 setPassword(val)
                 setCss("none")

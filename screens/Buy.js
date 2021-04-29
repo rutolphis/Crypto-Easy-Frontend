@@ -14,7 +14,7 @@ import { formatNumber } from "../functions/numberFormat"
 
 export default function Buy({ navigation }) {
   const handleBuy = () => {
-    fetch("http://192.168.1.111:8000/buy", {
+    fetch("http://192.168.191.118:8000/buy", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -30,7 +30,7 @@ export default function Buy({ navigation }) {
       .then((json) => {
         setState(true)
         if (json.response == "Not enough money") {
-          setBuyResult("Not enough money!")
+          setBuyResult("Not enough money to buy!")
           setCss("flex")
           setColor("red")
           console.log("NEMAZ PANAZE")

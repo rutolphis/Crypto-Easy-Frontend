@@ -7,10 +7,10 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Modal
+  Modal,
 } from "react-native"
 import { Form, Item, Label, Input, Button } from "native-base"
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker"
 import { getToken } from "../token/Token"
 
 export default function Register({ navigation }) {
@@ -36,23 +36,42 @@ export default function Register({ navigation }) {
       allowsEditing: true,
       aspect: [3, 3],
       quality: 1,
-      base64: true
-    }); 
-      setPhoto(result.base64)
-      console.log(photo.substring(0, 30))
-
+      base64: true,
+    })
+    setPhoto(result.base64)
+    console.log(photo.substring(0, 30))
   }
 
   const handleSignUp = () => {
-
-    if(email=='' || password =='' || firstname == '' || lastname=='' || cardId == '' || city == '' || street == '' || postalCode == '' || debetCard == '' || isSelected==false){
+    if (
+      email == "" ||
+      password == "" ||
+      firstname == "" ||
+      lastname == "" ||
+      cardId == "" ||
+      city == "" ||
+      street == "" ||
+      postalCode == "" ||
+      debetCard == "" ||
+      isSelected == false
+    ) {
       setRegisterStatus("You have to fill every field.")
       setCss("flex")
       return
     }
 
-    console.log(email,password,firstname,lastname,cardId,city,street,postalCode,debetCard)
-    fetch("http://192.168.1.111:8000/register", {
+    console.log(
+      email,
+      password,
+      firstname,
+      lastname,
+      cardId,
+      city,
+      street,
+      postalCode,
+      debetCard
+    )
+    fetch("http://192.168.191.118:8000/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -63,12 +82,12 @@ export default function Register({ navigation }) {
         password: password,
         firstname: firstname,
         lastname: lastname,
-        card_id:cardId,
+        card_id: cardId,
         city: city,
         street: street,
         postal_code: postalCode,
         debet_card_number: debetCard,
-        photo: photo
+        photo: photo,
       }),
     })
       .then((response) => response.json())
@@ -136,7 +155,7 @@ export default function Register({ navigation }) {
             <Item stackedLabel last>
               <Label style={styles.regInput}>Card ID</Label>
               <Input
-              keyboardType="numeric"
+                keyboardType="numeric"
                 onChangeText={(val) => {
                   setCardId(val)
                   setCss("none")
@@ -181,10 +200,13 @@ export default function Register({ navigation }) {
                 }}
               />
             </Item>
-            <Button style={styles.buttonUpload} onPress={() => {pickImage()}}>
-               <Text style={styles.buttonUpload}>
-                 Upload your photo
-               </Text>
+            <Button
+              style={styles.buttonUpload}
+              onPress={() => {
+                pickImage()
+              }}
+            >
+              <Text style={styles.buttonUpload}>Upload your photo</Text>
             </Button>
             <View style={styles.checkboxContainer}>
               <CheckBox
@@ -216,7 +238,12 @@ export default function Register({ navigation }) {
                 .
               </Text>
             </View>
-            <Button block light style={styles.button} onPress={() => handleSignUp()}>
+            <Button
+              block
+              light
+              style={styles.button}
+              onPress={() => handleSignUp()}
+            >
               <Text style={styles.button}>Sign Up</Text>
             </Button>
           </Form>
@@ -226,72 +253,70 @@ export default function Register({ navigation }) {
               color: "red",
               marginBottom: 10,
               fontSize: 16,
-              alignSelf: 'center'
+              alignSelf: "center",
             }}
           >
             {registerResult}
           </Text>
-          <Text style={styles.signUpText}>
-            Already have an account ?{" "}
-            </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text style={styles.signUp}>Sign In</Text>
-            </TouchableOpacity>
+          <Text style={styles.signUpText}>Already have an account ? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.signUp}>Sign In</Text>
+          </TouchableOpacity>
         </ScrollView>
         <Modal
-        visible={state}
-        animationType="slide"
-        presentationStyle="overFullScreen"
-        transparent={true}
-        onRequestClose={() => {
-          setState(false)
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#000000aa",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+          visible={state}
+          animationType="slide"
+          presentationStyle="overFullScreen"
+          transparent={true}
+          onRequestClose={() => {
+            setState(false)
           }}
         >
           <View
             style={{
-              backgroundColor: "#0c6cf5",
-              marginTop: "133%",
-              width: "100%",
-              height: "30%",
-              borderRadius: 10,
+              flex: 1,
+              backgroundColor: "#000000aa",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <View
+              style={{
+                backgroundColor: "#0c6cf5",
+                marginTop: "133%",
+                width: "100%",
+                height: "30%",
+                borderRadius: 10,
+              }}
+            >
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 20,
+                    alignSelf: "flex-end",
+                    marginRight: 20,
+                    marginTop: 20,
+                  }}
+                >
+                  x
+                </Text>
+              </TouchableOpacity>
               <Text
                 style={{
                   color: "white",
                   fontSize: 20,
-                  alignSelf: "flex-end",
-                  marginRight: 20,
-                  marginTop: 20,
+                  fontWeight: "bold",
+                  alignSelf: "center",
+                  marginTop: "13%",
                 }}
               >
-                x
+                Registered succesfully!
               </Text>
-            </TouchableOpacity>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 20,
-                fontWeight: "bold",
-                alignSelf: "center",
-                marginTop: "13%",
-              }}
-            >
-              Registered succesfully!
-            </Text>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
       </View>
     </View>
   )
@@ -360,10 +385,10 @@ const styles = StyleSheet.create({
     width: 250,
     textAlign: "center",
     marginTop: 20,
-    marginBottom:20,
+    marginBottom: 20,
     fontSize: 17,
     borderRadius: 7,
-    alignSelf:'center'
+    alignSelf: "center",
   },
 
   signUpText: {
@@ -382,7 +407,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     marginBottom: "20%",
-
   },
   checkboxContainer: {
     width: 300,

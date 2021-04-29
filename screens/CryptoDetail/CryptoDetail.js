@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { View, Text, Modal, TouchableOpacity } from "react-native"
 import { Button } from "native-base"
-import { getToken } from "../../token/Token"
 import { getInfo } from "../../functions/GetInfo"
 import { getCoin } from "../../functions/GetCoin"
 import { styles } from "../Wallet/walletStyles"
@@ -13,7 +12,6 @@ export default function CryptoDetail({ navigation }) {
   const crypto = navigation.getParam("crypto")
   const availableSell = navigation.getParam("availableSell")
   const availableBuy = navigation.getParam("availableBuy")
-  console.log("availableBuy", availableBuy)
 
   const cryptoTemplate = {
     api_response: {
@@ -67,11 +65,8 @@ export default function CryptoDetail({ navigation }) {
   }
 
   const [response, setResponse] = useState(cryptoTemplate)
-
   const [personalInfo, setPersonalInfo] = useState("")
-
   const [historicalData, setHistoricalData] = useState([1, 2, 3, 4, 5])
-
   const [state, setState] = useState(false)
 
   useEffect(() => {
@@ -145,16 +140,18 @@ export default function CryptoDetail({ navigation }) {
             </Text>
           </View>
         </View>
-        <Button
-          block
-          light
-          style={styles.cryptoDetailButton}
-          onPress={() => {
-            setState(true)
-          }}
-        >
-          <Text style={styles.cryptoDetailButton}>Trade</Text>
-        </Button>
+        <View style={{ visible: "None" }}>
+          <Button
+            block
+            light
+            style={styles.cryptoDetailButton}
+            onPress={() => {
+              setState(true)
+            }}
+          >
+            <Text style={styles.cryptoDetailButton}>Trade</Text>
+          </Button>
+        </View>
         <Modal
           visible={state}
           animationType="slide"

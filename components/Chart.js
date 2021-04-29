@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import { PieChart, LineChart } from "react-native-chart-kit"
 import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
@@ -14,7 +14,67 @@ export const ChartPie = (wallet) => {
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
   }
+
   let response = getCryptoToEurBalance()
+
+  // const data = [
+  //   {
+  //     name: "bitcoin",
+  //     amount:
+  //       wallet.wallet.bitcoin_balance ||
+  //       response.api_response.BTC.quote.EUR.price
+  //         ? response?.api_response?.BTC?.quote?.EUR?.price *
+  //           wallet?.wallet?.bitcoin_balance
+  //         : 0,
+  //     color: "#003A6B",
+  //   },
+  //   {
+  //     name: "ethereum",
+  //     amount:
+  //       wallet.wallet.ethereum_balance ||
+  //       response.api_response.ETH.quote.EUR.price
+  //         ? response?.api_response?.ETH?.quote?.EUR?.price *
+  //           wallet?.wallet?.ethereum_balance
+  //         : 0,
+  //     color: "#1B5886",
+  //   },
+  //   {
+  //     name: "cardano",
+  //     amount:
+  //       wallet.wallet.cardano_balance ||
+  //       response.api_response.ADA.quote.EUR.price
+  //         ? response?.api_response?.ADA?.quote?.EUR?.price *
+  //           wallet?.wallet?.cardano_balance
+  //         : 0,
+  //     color: "#3776A1",
+  //   },
+  //   {
+  //     name: "litecoin",
+  //     amount:
+  //       wallet.wallet.litecoin_balance ||
+  //       response.api_response.LTC.quote.EUR.price
+  //         ? response?.api_response?.LTC?.quote?.EUR?.price *
+  //           wallet?.wallet?.litecoin_balance
+  //         : 0,
+  //     color: "#5293BB",
+  //   },
+  //   {
+  //     name: "polkadot",
+  //     amount:
+  //       wallet.wallet.polkadot_balance ||
+  //       response.api_response.DOT.quote.EUR.price
+  //         ? response?.api_response?.DOT?.quote?.EUR?.price *
+  //           wallet?.wallet?.polkadot_balance
+  //         : 0,
+
+  //     color: "#6EB1D6",
+  //   },
+  //   {
+  //     name: "euro",
+  //     amount: wallet?.wallet?.eur_balance ? wallet.wallet.eur_balance : 1,
+  //     color: "#89CFF1",
+  //   },
+  // ]
 
   const data = [
     {
@@ -69,12 +129,12 @@ export const ChartPie = (wallet) => {
     },
     {
       name: "euro",
-      amount: wallet?.wallet?.eur_balance ? wallet.wallet.eur_balance : 1,
+      amount: wallet.wallet.eur_balance ? wallet.wallet.eur_balance : 0,
       color: "#89CFF1",
     },
   ]
 
-  if (!data[0].amount) {
+  if (!data[5].amount) {
     return <View></View>
   }
   return (
