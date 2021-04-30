@@ -14,7 +14,6 @@ import { formatNumber } from "../functions/numberFormat"
 
 export default function Sell({ navigation }) {
   const handleSell = () => {
-    console.log("som tu")
     fetch("http://192.168.191.118:8000/sell", {
       method: "PUT",
       headers: {

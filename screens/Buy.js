@@ -33,14 +33,11 @@ export default function Buy({ navigation }) {
           setBuyResult("Not enough money to buy!")
           setCss("flex")
           setColor("red")
-          console.log("NEMAZ PANAZE")
         } else if (json.response == "Cryptocurrency added") {
-          console.log("PARADA")
           setBuyResult("Cryptocurrency sucesfully added!")
           setCss("flex")
           setColor("#0c6cf5")
         } else if (json.response == "No permission") {
-          console.log("ajajaja")
           setBuyResult("No permission!")
           setCss("flex")
           setColor("red")
@@ -75,6 +72,7 @@ export default function Buy({ navigation }) {
       setEurBalance(json?.Wallet?.eur_balance)
     })
   }, [])
+
   return (
     <View style={styles.containerMain}>
       <Text style={styles.title}>Buy</Text>

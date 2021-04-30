@@ -17,65 +17,6 @@ export const ChartPie = (wallet) => {
 
   let response = getCryptoToEurBalance()
 
-  // const data = [
-  //   {
-  //     name: "bitcoin",
-  //     amount:
-  //       wallet.wallet.bitcoin_balance ||
-  //       response.api_response.BTC.quote.EUR.price
-  //         ? response?.api_response?.BTC?.quote?.EUR?.price *
-  //           wallet?.wallet?.bitcoin_balance
-  //         : 0,
-  //     color: "#003A6B",
-  //   },
-  //   {
-  //     name: "ethereum",
-  //     amount:
-  //       wallet.wallet.ethereum_balance ||
-  //       response.api_response.ETH.quote.EUR.price
-  //         ? response?.api_response?.ETH?.quote?.EUR?.price *
-  //           wallet?.wallet?.ethereum_balance
-  //         : 0,
-  //     color: "#1B5886",
-  //   },
-  //   {
-  //     name: "cardano",
-  //     amount:
-  //       wallet.wallet.cardano_balance ||
-  //       response.api_response.ADA.quote.EUR.price
-  //         ? response?.api_response?.ADA?.quote?.EUR?.price *
-  //           wallet?.wallet?.cardano_balance
-  //         : 0,
-  //     color: "#3776A1",
-  //   },
-  //   {
-  //     name: "litecoin",
-  //     amount:
-  //       wallet.wallet.litecoin_balance ||
-  //       response.api_response.LTC.quote.EUR.price
-  //         ? response?.api_response?.LTC?.quote?.EUR?.price *
-  //           wallet?.wallet?.litecoin_balance
-  //         : 0,
-  //     color: "#5293BB",
-  //   },
-  //   {
-  //     name: "polkadot",
-  //     amount:
-  //       wallet.wallet.polkadot_balance ||
-  //       response.api_response.DOT.quote.EUR.price
-  //         ? response?.api_response?.DOT?.quote?.EUR?.price *
-  //           wallet?.wallet?.polkadot_balance
-  //         : 0,
-
-  //     color: "#6EB1D6",
-  //   },
-  //   {
-  //     name: "euro",
-  //     amount: wallet?.wallet?.eur_balance ? wallet.wallet.eur_balance : 1,
-  //     color: "#89CFF1",
-  //   },
-  // ]
-
   const data = [
     {
       name: "bitcoin",

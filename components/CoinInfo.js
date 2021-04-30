@@ -4,7 +4,6 @@ import { getCoin } from "../functions/GetCoin"
 import { getInfo } from "../functions/GetInfo"
 import { formatNumber } from "../functions/numberFormat"
 import cryptoTemplate from "./CryptoTemplate"
-import { getCryptoToEurBalance } from "../functions/getCryptoToEurBalance"
 
 const Coin = ({ navigation }) => {
   const [response, setResponse] = useState(cryptoTemplate)

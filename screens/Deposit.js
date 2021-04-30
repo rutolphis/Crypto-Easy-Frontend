@@ -8,13 +8,11 @@ import {
 } from "react-native"
 import { Button } from "native-base"
 import React, { useState, useEffect } from "react"
-import { getInfo } from "../functions/GetInfo"
 import { getToken } from "../token/Token"
-import { formatNumber } from "../functions/numberFormat"
 
 export default function Buy({ navigation }) {
   const handleDeposit = () => {
-    fetch("http://192.168.1.111:8000/deposit", {
+    fetch("http://192.168.191.118:8000/deposit", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -111,7 +109,11 @@ export default function Buy({ navigation }) {
               borderRadius: 10,
             }}
           >
-            <TouchableOpacity onPress={() => {navigation.navigate("Wallet")}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Wallet")
+              }}
+            >
               <Text
                 style={{
                   color: "white",
@@ -119,7 +121,6 @@ export default function Buy({ navigation }) {
                   alignSelf: "flex-end",
                   marginRight: 20,
                   marginTop: 20,
-                  
                 }}
               >
                 x
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
     fontSize: 17,
-    marginLeft: 45
+    marginLeft: 45,
   },
   cryptoDetailButton: {
     backgroundColor: "#d6d6d6",
