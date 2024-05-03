@@ -53,6 +53,6 @@ Follow these steps to set up your local development environment:
 ## Authors
 
 * **Rudolf Krizan** - *Initial work* - [rutolphis](https://github.com/rutolphis)
-* **Martin Hampel** - *Initial work* - [rutolphis](https://github.com/martinhampel)
+* **Martin Hampel** - *Initial work* - [martin](https://github.com/martinhampel)
 
 
